@@ -41,3 +41,9 @@
     max-width: 1140px;
   }
 }
+@media (min-width: 4000px) {
+  .container,
+  .container-fluid {
+    max-width: 1140px;
+  }
+}

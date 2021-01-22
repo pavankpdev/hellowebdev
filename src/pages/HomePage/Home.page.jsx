@@ -1,11 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 
 // styles
 import "./Home.styles.scss";
 
 // Components
 import SideBar from "../../components/SideBar/SideBar.component";
+import CategoryList from "../../components/CategoryCapsule/CategoryCapsule.component";
+
 const Home = () => {
+  const [categories, setCategories] = useState([
+    { id: "react", value: "ReactJS" },
+    { id: "firebase", value: "Firebase" },
+    { id: "node", value: "nodeJS" },
+    { id: "mysql", value: "MySQL" },
+    { id: "mongodb", value: "MongoDB" },
+  ]);
+  const [selected, setSelected] = useState(["react"]);
+
+  const SelectCategory = (id) => {
+    if (selected.includes(id) && selected.length > 1)
+      return setSelected(selected.filter((category) => category !== id));
+
+    if (!selected.includes(id)) return setSelected([...selected, id]);
+
+    return;
+  };
+
   return (
     <>
       <h1 className="hero__text container">
@@ -41,12 +61,20 @@ const Home = () => {
           </button>
         </a>
       </div>
-      <div className="home__content">
+      <div className="home__content container-fluid">
         <div className="home__sidebar__container">
           <SideBar />
         </div>
         <div className="home__resources__container">
-          
+          <div className="category__container">
+            {categories.map((category) => (
+              <CategoryList
+                selected={selected}
+                {...category}
+                SelectCategory={SelectCategory}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </>

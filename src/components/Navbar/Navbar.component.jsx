@@ -11,10 +11,10 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   return (
     <>
-      <div className="navbar container">
+      <div className="navbar ">
         <div className="hero__gradient"></div>
 
-        <nav className="navbar__container">
+        <nav className="navbar__container container">
           <div className="navbar__contents__lg">
             <div className="navbar__branding">
               <img src={Logo} alt="logo" />
@@ -70,7 +70,10 @@ const Navbar = () => {
           <div className="navbar__button__sm">
             <button className="btn btn-github">
               Sign in with github{" "}
-              <i className="fab fa-github fa-lg" style={{ marginLeft: ".5rem" }} />
+              <i
+                className="fab fa-github fa-lg"
+                style={{ marginLeft: ".5rem" }}
+              />
             </button>
           </div>
         </div>

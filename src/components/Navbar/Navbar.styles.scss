@@ -22,7 +22,6 @@
     rgba(65, 54, 241, 1) 74%
   );
   height: 23rem;
-  margin: 0 -32rem;
   transform: skewY(-4deg);
   transform-origin: left top;
   z-index: -1;
@@ -100,5 +99,11 @@
 @media (min-width: 1200px) {
   .hero__gradient {
     height: 40rem;
+  }
+}
+
+@media (min-width: 4000px) {
+  .hero__gradient {
+    transform: skewY(-1deg);
   }
 }

@@ -4,20 +4,29 @@
   text-align: center;
 }
 .hero__button__group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  & > button {
+    margin: 1rem 0;
+  }
 }
 .home__sidebar__container {
   margin-top: 5rem;
 }
 .home__resources__container {
-  margin-top: 5rem;
+  padding: 1rem;
+  margin-top: 2rem;
   width: 100%;
   height: 20px;
-  background-color: #000;
 }
+.category__container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 @media (min-width: 768px) {
+  .hero__text {
+    padding-bottom: 2rem;
+    font-size: 2rem !important;
+  }
   .hero__button__group {
     display: flex;
     flex-wrap: wrap;
@@ -50,6 +59,5 @@
     flex: 2;
     width: 100%;
     height: 20px;
-    background-color: #000;
   }
 }
