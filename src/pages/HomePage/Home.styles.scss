@@ -6,10 +6,7 @@
 .hero__buttons {
   display: flex;
   flex-wrap: wrap;
-  & > button {
-    margin: 0 1rem;
-    margin-top: 5px;
-  }
+  gap: 1rem;
 }
 
 @media (min-width: 768px) {
