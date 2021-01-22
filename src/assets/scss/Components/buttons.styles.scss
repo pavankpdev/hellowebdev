@@ -1,12 +1,14 @@
 .btn {
   font-family: $font-family-base !important;
-  display: inline-block;
+  display: flex;
+  align-items: center;
   font-weight: $btn-font-weight;
   letter-spacing: $btn-letter-spacing;
   font-size: $input-btn-font-size-sm;
   transition: all 0.15s ease;
   text-transform: uppercase;
   text-align: center;
+  text-decoration: none !important;
   white-space: nowrap;
   vertical-align: middle;
   user-select: none;
@@ -15,6 +17,7 @@
   padding: $btn-padding-y-sm $btn-padding-x-sm;
   border-radius: 8px;
   line-height: $input-btn-line-height-sm;
+
   cursor: pointer;
   &:hover {
     box-shadow: $btn-hover-box-shadow;
@@ -50,6 +53,10 @@
 }
 .btn.btn-secondary {
   background-color: $warning;
+  color: $default;
+}
+.btn.btn-github {
+  background-color: $primary;
   color: $default;
 }
 

@@ -6,7 +6,7 @@ import Navbar from "./components/Navbar/Navbar.component";
 const HomePage = React.lazy(() => import("./pages/HomePage/Home.page"));
 function App() {
   return (
-    <div className="container ">
+    <div className="container-fluid">
       <Navbar />
       <Suspense fallback={<>Loading</>}>
         <HomePage />
