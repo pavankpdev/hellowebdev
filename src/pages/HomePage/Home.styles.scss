@@ -1,0 +1,32 @@
+.hero__text {
+  padding-top: 0.7rem;
+  font-size: 1.6rem !important;
+  text-align: center;
+}
+.hero__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  & > button {
+    margin: 0 1rem;
+    margin-top: 5px;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    & > button {
+      margin: 0 1rem;
+      margin-top: 0;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero__text {
+    padding-top: 4rem;
+    font-size: 3.5rem !important;
+  }
+}

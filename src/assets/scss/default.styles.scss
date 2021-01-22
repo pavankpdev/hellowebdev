@@ -1,0 +1,34 @@
+// Variables
+@import "./variables.styles.scss";
+
+// styles
+@import "./Components/colors.styles.scss";
+@import "./Components/typography.styles.scss";
+@import "./Components/utilities.styles.scss";
+@import "./Components/buttons.styles.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $font-family-base;
+  color: $default;
+  background: linear-gradient(
+        90deg,
+        $app-bg-color ($dot-space - $dot-size),
+        transparent 1%
+      )
+      center,
+    linear-gradient($app-bg-color ($dot-space - $dot-size), transparent 1%)
+      center,
+    $dot-color !important;
+  background-size: $dot-space $dot-space !important;
+  overflow: hidden;
+}
+
+.hide {
+  display: none;
+  visibility: hidden;
+}
