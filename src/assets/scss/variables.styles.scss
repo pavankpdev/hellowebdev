@@ -37,9 +37,14 @@ $headings-margin-bottom: (1rem / 2);
 $headings-font-family: inherit !default;
 $headings-font-weight: $font-weight-bold !default;
 $headings-line-height: 1.5 !default;
-// Utilities
 
 // ------ Components ------
+
+// Card
+$card-border-width:                 1px !default;
+$card-border-radius:                16px !default;
+$card-border-color:                 rgba($primary, .125) !default;
+
 
 // Buttons + Forms global settings
 
@@ -98,3 +103,4 @@ $btn-active-box-shadow: none !default;
 $dot-color: hsl(256, 33, 70);
 $dot-size: 1px;
 $dot-space: 22px;
+$card-box-shadow: 0 0.5rem 1rem rgba($primary, 0.15);

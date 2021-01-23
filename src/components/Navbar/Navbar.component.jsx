@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import classnames from "classnames";
 
+// components
+import GitHubAuthBtn from "../GitHubAuthBtn/GitHubAuthBtn.component";
+
 // svg
 import Logo from "../../assets/svg/logo.svg";
 
@@ -68,13 +71,7 @@ const Navbar = () => {
             Resource Contributers List
           </div>
           <div className="navbar__button__sm">
-            <button className="btn btn-github">
-              Sign in with github{" "}
-              <i
-                className="fab fa-github fa-lg"
-                style={{ marginLeft: ".5rem" }}
-              />
-            </button>
+            <GitHubAuthBtn />
           </div>
         </div>
       </div>

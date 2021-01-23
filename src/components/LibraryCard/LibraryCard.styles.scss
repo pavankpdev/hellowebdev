@@ -4,15 +4,12 @@
   margin: 0.5rem 0;
   font-family: $font-family-alt;
   background-color: $primary;
-  padding: 2rem;
-  box-shadow: $btn-box-shadow;
+  padding: 1.5rem;
+  box-shadow: $card-box-shadow;
   max-width: 100%;
 
   & > .library__card__header {
-    width: 80%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    word-break: break-all;
   }
 
   & > .library__card__body {
@@ -58,12 +55,10 @@
 
 @media (min-width: 768px) {
   .library__card {
-    max-width: 100%;
+    max-width: 18rem;
     margin: 0.5rem;
   }
 }
 @media (min-width: 1200px) {
-  .library__card {
-    max-width: 100%;
-  }
+  
 }
