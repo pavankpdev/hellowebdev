@@ -43,7 +43,13 @@
   }
 }
 
+.btn.btn-sm {
+  font-size: $input-btn-font-size;
+  padding: $btn-padding-y $btn-padding-x;
+}
+
 .btn.btn-primary {
+  border: none;
   background: rgb(135, 67, 255);
   background: linear-gradient(
     221deg,

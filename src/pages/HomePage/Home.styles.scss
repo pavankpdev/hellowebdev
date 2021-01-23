@@ -1,3 +1,5 @@
+@import "../../assets/scss/variables.styles.scss";
+
 .hero__text {
   padding-top: 0.7rem;
   font-size: 1.6rem !important;
@@ -21,6 +23,14 @@
   display: flex;
   flex-wrap: wrap;
 }
+.usefull__libraries {
+  margin-top: 3rem;
+}
+
+.library__title {
+  font-family: $font-family-base;
+  letter-spacing: 0.05rem;
+}
 
 @media (min-width: 768px) {
   .hero__text {
@@ -36,8 +46,15 @@
       margin-top: 0;
     }
   }
+  .library__title {
+    margin-left: 0.5rem;
+  }
   .home__sidebar__container {
     margin-top: 9rem;
+  }
+  .home__library__card__container {
+    display: flex;
+    flex-wrap: wrap;
   }
 }
 

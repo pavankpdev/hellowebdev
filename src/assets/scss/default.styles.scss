@@ -25,7 +25,7 @@ body {
       center,
     $dot-color !important;
   background-size: $dot-space $dot-space !important;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .hide {

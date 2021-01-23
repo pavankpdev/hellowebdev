@@ -10,10 +10,13 @@
     "url": "git+https://github.com/pavankpdev/web-dev-repo.git"
   },
   "dependencies": {
+    "@react-firebase/auth": "^0.2.10",
+    "@react-firebase/firestore": "^0.5.5",
     "@testing-library/jest-dom": "5.11.6",
     "@testing-library/react": "11.2.2",
     "@testing-library/user-event": "12.2.2",
     "classnames": "2.2.6",
+    "firebase": "^8.2.4",
     "node-sass": "4.14.1",
     "react": "17.0.1",
     "react-datetime": "3.0.4",

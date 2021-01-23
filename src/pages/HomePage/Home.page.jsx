@@ -6,6 +6,7 @@ import "./Home.styles.scss";
 // Components
 import SideBar from "../../components/SideBar/SideBar.component";
 import CategoryList from "../../components/CategoryCapsule/CategoryCapsule.component";
+import LibraryCard from "../../components/LibraryCard/LibraryCard.component";
 
 const Home = () => {
   const [categories, setCategories] = useState([
@@ -15,13 +16,43 @@ const Home = () => {
     { id: "mysql", value: "MySQL" },
     { id: "mongodb", value: "MongoDB" },
   ]);
-  const [selected, setSelected] = useState(["react"]);
+  const [filter, setFilter] = useState(["react"]);
+  const [usefulLibraries, setUsefulLibraries] = useState([
+    {
+      header: "Mongoose",
+      body: "The official documentation website is mongoosejs.com",
+      contributorAvatar:
+        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
+      contributorName: "pavan Kumar K",
+    },
+    {
+      header: "Mongoose",
+      body: "The official documentation website is mongoosejs.com",
+      contributorAvatar:
+        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
+      contributorName: "pavan Kumar K",
+    },
+    {
+      header: "Mongoose",
+      body: "The official documentation website is mongoosejs.com",
+      contributorAvatar:
+        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
+      contributorName: "pavan Kumar K",
+    },
+    {
+      header: "Mongoose",
+      body: "The official documentation website is mongoosejs.com",
+      contributorAvatar:
+        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
+      contributorName: "pavan Kumar K",
+    },
+  ]);
 
   const SelectCategory = (id) => {
-    if (selected.includes(id) && selected.length > 1)
-      return setSelected(selected.filter((category) => category !== id));
+    if (filter.includes(id) && filter.length > 1)
+      return setFilter(filter.filter((category) => category !== id));
 
-    if (!selected.includes(id)) return setSelected([...selected, id]);
+    if (!filter.includes(id)) return setFilter([...filter, id]);
 
     return;
   };
@@ -69,11 +100,19 @@ const Home = () => {
           <div className="category__container">
             {categories.map((category) => (
               <CategoryList
-                selected={selected}
+                selected={filter}
                 {...category}
                 SelectCategory={SelectCategory}
               />
             ))}
+          </div>
+          <div className="usefull__libraries">
+            <h2 className="library__title">Usefull Libraries</h2>
+            <div className="home__library__card__container">
+              {usefulLibraries.map((library) => (
+                <LibraryCard {...library} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
