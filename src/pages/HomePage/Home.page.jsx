@@ -6,167 +6,25 @@ import "./Home.styles.scss";
 // Components
 import SideBar from "../../components/SideBar/SideBar.component";
 import CategoryList from "../../components/CategoryCapsule/CategoryCapsule.component";
-import LibraryCard from "../../components/LibraryCard/LibraryCard.component";
+import NonImageCard from "../../components/NonImageCard/NonImageCard.component";
 import ImageCard from "../../components/ImageCard/ImageCard.component";
 
+// Sample data
+import {
+  usefullLibraries,
+  codeSnippetss,
+  amazingArticless,
+  freeCoursess,
+  categoriess,
+} from "../../utils/data";
+
 const Home = () => {
-  const [categories, setCategories] = useState([
-    { id: "react", value: "ReactJS" },
-    { id: "firebase", value: "Firebase" },
-    { id: "node", value: "nodeJS" },
-    { id: "mysql", value: "MySQL" },
-    { id: "mongodb", value: "MongoDB" },
-  ]);
+  const [categories, setCategories] = useState(categoriess);
   const [filter, setFilter] = useState(["react"]);
-  const [usefulLibraries, setUsefulLibraries] = useState([
-    {
-      header: "Mongoose For Nodejs",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-  ]);
-
-  const [codeSnippets, setCodeSnippets] = useState([
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg?w=1600&h=840&fit=crop&crop=entropy",
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg?w=1600&h=840&fit=crop&crop=entropy",
-
-      header: "Mongoose For Nodejs",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg?w=1600&h=840&fit=crop&crop=entropy",
-
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg?w=1600&h=840&fit=crop&crop=entropy",
-
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-  ]);
-
-  const [freeCourses, setFreeCourses] = useState([
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg",
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg",
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg",
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg",
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-  ]);
-  const [amazingArticles, setAmazingArticles] = useState([
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg",
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg",
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg",
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-    {
-      thumbnail:
-        "https://cdn.hashnode.com/res/hashnode/image/upload/v1610037319074/zWlg39FQk.jpeg",
-      header: "Mongoose",
-      body: "The official documentation website is mongoosejs.com",
-      contributorAvatar:
-        "https://cdn0.iconfinder.com/data/icons/professional-avatar-5/48/manager_male_avatar_men_character_professions-512.png",
-      contributorName: "pavan Kumar K",
-    },
-  ]);
+  const [usefulLibraries, setUsefulLibraries] = useState(usefullLibraries);
+  const [codeSnippets, setCodeSnippets] = useState(codeSnippetss);
+  const [freeCourses, setFreeCourses] = useState(freeCoursess);
+  const [amazingArticles, setAmazingArticles] = useState(amazingArticless);
 
   const SelectCategory = (id) => {
     if (filter.includes(id) && filter.length > 1)
@@ -230,7 +88,7 @@ const Home = () => {
             <h2 className="library__title">Usefull Libraries</h2>
             <div className="home__library__card__container">
               {usefulLibraries.map((library) => (
-                <LibraryCard {...library} />
+                <NonImageCard {...library} />
               ))}
             </div>
           </div>
@@ -238,7 +96,7 @@ const Home = () => {
             <h2 className="code__snippet__title">Code Snippets</h2>
             <div className="home__codesnippet__card__container">
               {codeSnippets.map((snippet) => (
-                <ImageCard {...snippet} />
+                <NonImageCard {...snippet} />
               ))}
             </div>
           </div>

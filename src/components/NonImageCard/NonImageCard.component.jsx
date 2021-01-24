@@ -1,8 +1,8 @@
 import React from "react";
 
-import "./LibraryCard.styles.scss";
+import "./NonImageCard.styles.scss";
 
-const LibraryCard = ({
+const NonImageCard = ({
   header,
   body,
   path,
@@ -37,4 +37,4 @@ const LibraryCard = ({
   );
 };
 
-export default LibraryCard;
+export default NonImageCard;

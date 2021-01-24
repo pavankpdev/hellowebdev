@@ -11,7 +11,7 @@ import {
 } from "../../configs/firebase.config";
 
 // Context
-import { CurrentUserContext } from "../../context/auth";
+import { CurrentUserContext } from "../../context/auth.context";
 import { useState } from "react/cjs/react.development";
 
 const GitHubAuthBtn = () => {
