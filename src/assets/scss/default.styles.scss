@@ -38,6 +38,12 @@ a {
   text-decoration: none;
 }
 
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
 .pointer {
   cursor: pointer;
 }

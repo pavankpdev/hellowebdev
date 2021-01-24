@@ -8,6 +8,7 @@ import SideBar from "../../components/SideBar/SideBar.component";
 import CategoryList from "../../components/CategoryCapsule/CategoryCapsule.component";
 import NonImageCard from "../../components/NonImageCard/NonImageCard.component";
 import ImageCard from "../../components/ImageCard/ImageCard.component";
+import LightTextInput from "../../components/LightFormInput/LightFormInput.component";
 
 // Sample data
 import {
@@ -39,7 +40,10 @@ const Home = () => {
     <>
       <h1 className="hero__text container">
         Curated Collection of all web development resources in one place.
-      </h1>
+      </h1>{" "}
+      <div className="home__search__bar">
+        <LightTextInput />
+      </div>
       <div className="hero__button__group container">
         <a
           href="https://github.com/pavankpdev/web-dev-repo"

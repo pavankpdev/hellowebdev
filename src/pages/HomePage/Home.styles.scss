@@ -1,5 +1,11 @@
 @import "../../assets/scss/variables.styles.scss";
 
+.home__search__bar {
+  display: flex;
+  justify-content: center;
+  margin: 1rem 0;
+}
+
 .hero__text {
   padding-top: 0.7rem;
   font-size: 1.6rem !important;
@@ -39,6 +45,10 @@
 }
 
 @media (min-width: 768px) {
+  .home__search__bar {
+    margin-top: -1rem;
+    margin-bottom: 2rem;
+  }
   .hero__text {
     padding-bottom: 2rem;
     font-size: 2rem !important;
