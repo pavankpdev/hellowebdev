@@ -7,7 +7,7 @@ import "./Home.styles.scss";
 import SideBar from "../../components/SideBar/SideBar.component";
 import CategoryList from "../../components/CategoryCapsule/CategoryCapsule.component";
 import LibraryCard from "../../components/LibraryCard/LibraryCard.component";
-import ImageCard from "../../components/CodeSnippets/ImageCard.component";
+import ImageCard from "../../components/ImageCard/ImageCard.component";
 
 const Home = () => {
   const [categories, setCategories] = useState([

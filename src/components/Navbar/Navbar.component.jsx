@@ -10,6 +10,8 @@ import Logo from "../../assets/svg/logo.svg";
 // Styles
 import "./Navbar.styles.scss";
 
+// Auth Context
+
 const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   return (
@@ -31,13 +33,7 @@ const Navbar = () => {
               </div>
             </div>
             <div className="navbar__button">
-              <button className="btn btn-github">
-                Sign in with github{" "}
-                <i
-                  className="fab fa-github fa-2x "
-                  style={{ marginLeft: "1rem" }}
-                />
-              </button>
+              <GitHubAuthBtn />
             </div>
           </div>
           <div className="navbar__contents__sm">
