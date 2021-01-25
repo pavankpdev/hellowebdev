@@ -21,6 +21,7 @@ const ProjectContribution = React.lazy(() =>
 const ResourceContribution = React.lazy(() =>
   import("./pages/ResourceContribution/ResourceContribution.component")
 );
+const Profile = React.lazy(() => import("./pages/Profile/Profile.component"));
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
                 path="/resource-contribution"
                 component={ResourceContribution}
               />
+              <Route exact path="/profile" component={Profile} />
             </Suspense>
           </Switch>
         </div>

@@ -1,0 +1,49 @@
+@import "../../assets/scss/variables.styles.scss";
+
+.profile__container {
+  & > .profile__image {
+    text-align: center;
+    & > img {
+      width: 170px;
+      height: 170px;
+      box-shadow: $card-box-shadow;
+    }
+    & > h3 {
+      font-weight: $font-weight-normal;
+    }
+
+    & > h5 {
+      font-weight: $font-weight-light;
+      & > a {
+        & > i {
+          margin-right: 0.3rem;
+        }
+      }
+    }
+  }
+
+  & > .profile__contents {
+  }
+}
+
+@media (min-width: 768px) {
+  .profile__container {
+    & > .profile__contents {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+}
+@media (min-width: 1200px) {
+  .profile__container {
+    margin-top: 4rem;
+
+    & > .profile__contents {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+  }
+}
