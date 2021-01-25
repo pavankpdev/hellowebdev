@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import classnames from "classnames";
+import { Link } from "react-router-dom";
 
 // components
 import GitHubAuthBtn from "../GitHubAuthBtn/GitHubAuthBtn.component";
@@ -21,16 +22,22 @@ const Navbar = () => {
 
         <nav className="navbar__container container">
           <div className="navbar__contents__lg">
-            <div className="navbar__branding">
-              <img src={Logo} alt="logo" />
-            </div>
+            <Link to="/">
+              <div className="navbar__branding">
+                <img src={Logo} alt="logo" />
+              </div>
+            </Link>
             <div className="navbar__navitems">
-              <div className="navitem navbar__navitem__1">
-                Project Contributers
-              </div>
-              <div className="navitem navbar__navitem__2">
-                Resource Contributers
-              </div>
+              <Link to="/project-contribution">
+                <div className="navitem navbar__navitem__1 white">
+                  Project Contributers
+                </div>
+              </Link>
+              <Link to="/resource-contribution">
+                <div className="navitem navbar__navitem__2 white">
+                  Resource Contributers
+                </div>
+              </Link>
             </div>
             <div className="navbar__button">
               <GitHubAuthBtn />

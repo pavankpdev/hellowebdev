@@ -1,0 +1,19 @@
+@import "../../assets/scss/variables.styles.scss";
+
+.form__group {
+  display: block;
+
+  & > .input-error {
+    border: 2px solid $danger !important;
+  }
+  & > input[type="text"] {
+    background-color: $app-bg-color;
+    border: 2px solid #4136f1;
+    border-radius: 4px;
+    color: $default;
+  }
+
+  & > small {
+    color: $danger;
+  }
+}

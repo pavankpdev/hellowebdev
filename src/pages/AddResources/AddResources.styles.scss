@@ -1,0 +1,32 @@
+@import "../../assets/scss/variables.styles.scss";
+
+.add__new__container {
+  margin: 2rem 2rem;
+  background-color: $primary;
+  box-shadow: $card-box-shadow;
+  padding: 2rem 1rem;
+  & > h4 {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  & > .resource__form {
+    margin: 1rem;
+  }
+
+  & > button {
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .add__new__container {
+    margin: 2rem 8rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .add__new__container {
+    margin: 2rem 25rem;padding: 2rem 2rem;
+  }
+}

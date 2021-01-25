@@ -29,6 +29,22 @@ body {
   overflow-x: hidden;
 }
 
+label {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+input[type="text"],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+}
+.block {
+  display: block;
+  visibility: visible;
+}
+
 .hide {
   display: none;
   visibility: hidden;

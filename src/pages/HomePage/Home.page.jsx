@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import algoliasearch from "algoliasearch/lite";
+import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
+import { Link } from "react-router-dom";
 
 // styles
 import "./Home.styles.scss";
@@ -26,6 +29,15 @@ const Home = () => {
   const [codeSnippets, setCodeSnippets] = useState(codeSnippetss);
   const [freeCourses, setFreeCourses] = useState(freeCoursess);
   const [amazingArticles, setAmazingArticles] = useState(amazingArticless);
+  const [searchInput, setSearchInput] = useState("");
+  const [DataHolder, setDataHolder] = useState({
+    usefulLibraries,
+    codeSnippets,
+    freeCourses,
+    amazingArticles,
+  });
+
+  // Sort the list based on search string
 
   const SelectCategory = (id) => {
     if (filter.includes(id) && filter.length > 1)
@@ -36,13 +48,20 @@ const Home = () => {
     return;
   };
 
+  const searchClient = algoliasearch(
+    "N8NI9VRBU1",
+    "fba347501ce93182f89978a9f95e17d4"
+  );
   return (
     <>
       <h1 className="hero__text container">
         Curated Collection of all web development resources in one place.
-      </h1>{" "}
+      </h1>
       <div className="home__search__bar">
-        <LightTextInput />
+        <InstantSearch indexName="bestbuy" searchClient={searchClient}>
+          <SearchBox />
+          <Hits />
+        </InstantSearch>
       </div>
       <div className="hero__button__group container">
         <a
@@ -58,9 +77,12 @@ const Home = () => {
             />
           </button>
         </a>
-        <button className="btn">
-          Submit a resource
-          <i className="fas fa-plus fa-lg" style={{ marginLeft: ".5rem" }} />
+
+        <button className="btn primary">
+          <Link to="/new-resource">
+            Submit a resource
+            <i className="fas fa-plus fa-lg" style={{ marginLeft: ".5rem" }} />
+          </Link>
         </button>
         <a
           href="https://github.com/pavankpdev/web-dev-repo"

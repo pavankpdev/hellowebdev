@@ -2,13 +2,16 @@ import React from "react";
 
 import "./LightFormInput.styles.scss";
 
-const LightFormInput = () => {
+const LightFormInput = ({ searchInput, setSearchInput }) => {
   return (
     <>
       <input
-        type="text"
+        type="search"
         placeholder="Search eg: React"
         className="form-input-light"
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
+        aria-label="Search through site content"
       />
     </>
   );
