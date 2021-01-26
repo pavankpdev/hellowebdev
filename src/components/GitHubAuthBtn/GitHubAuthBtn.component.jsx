@@ -16,12 +16,12 @@ import { useState } from "react/cjs/react.development";
 
 const GitHubAuthBtn = () => {
   const [dropDown, setDropDown] = useState(false);
-  const { isAuth, user, setUser } = useContext(CurrentUserContext);
+  const { isAuth, user, setUser: updateUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
     if (localStorage.helloWebDev) {
       const userData = JSON.parse(localStorage.helloWebDev);
-      setUser(userData.user, true);
+      updateUser(userData.user, true);
     }
   }, []);
 
@@ -43,7 +43,7 @@ const GitHubAuthBtn = () => {
         profilePic: avatar_url,
       };
 
-      setUser(currentUser, true);
+      updateUser(currentUser, true);
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +52,7 @@ const GitHubAuthBtn = () => {
   const signOutUser = async () => {
     try {
       await firebaseAuth.signOut();
-      setUser({}, false);
+      updateUser({}, false);
       localStorage.removeItem("helloWebDev");
     } catch (error) {
       console.log(error);
