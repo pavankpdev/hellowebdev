@@ -1,34 +1,9 @@
 import React from "react";
 import "./ProjectContribution.styles.scss";
 
+import { contributors as fakeData } from "../../utils/data";
+
 const ProjectContribution = () => {
-  const fakeData = [
-    {
-      username: "pavankpdev",
-      image: "https://avatars.githubusercontent.com/u/52795191?v=4",
-      name: "Pavan Kumar",
-    },
-    {
-      username: "DevNM21",
-      image: "https://avatars.githubusercontent.com/u/46824652?v=4",
-      name: "Devakumar",
-    },
-    {
-      username: "sreeharshabalaji",
-      image: "https://avatars.githubusercontent.com/u/61697100?v=4",
-      name: "Sree Harsha R",
-    },
-    {
-      username: "thebestestkhan",
-      image: "https://avatars.githubusercontent.com/u/61203329?v=4",
-      name: "Abdul Rawoof Khan",
-    },
-    {
-      username: "iBharath01",
-      image: "https://avatars.githubusercontent.com/u/61697610?v=4",
-      name: "Bharath M U",
-    },
-  ];
   return (
     <>
       <div className="project__contribution__container container">
@@ -44,7 +19,11 @@ const ProjectContribution = () => {
         <div className="project__contribution__card rounded">
           {fakeData.map(({ username, image, name }) => (
             <div className="project__contribution__profile">
-              <a href={`https://github.com/${username}`} target="_blank" >
+              <a
+                href={`https://github.com/${username}`}
+                target="_blank"
+                rel="noreferrer"
+              >
                 <img src={image} alt="profile" className="rounded" />
                 <h3>{name}</h3>
               </a>

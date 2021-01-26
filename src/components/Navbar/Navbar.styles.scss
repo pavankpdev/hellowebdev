@@ -53,6 +53,12 @@
   background-color: $default;
   border-radius: 6px;
   padding: 1rem;
+  & > a {
+    & > div {
+      margin: 1rem 0;
+      color: $app-bg-color;
+    }
+  }
   & > div {
     margin: 1rem 0;
     color: $app-bg-color;

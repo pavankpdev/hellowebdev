@@ -39,6 +39,11 @@
   & > button {
     margin: 1rem 0;
   }
+  & > a {
+    & > button {
+      margin: 1rem 0;
+    }
+  }
 }
 .home__sidebar__container {
   margin-top: 7rem;
@@ -84,6 +89,12 @@
     & > button {
       margin: 0 1rem;
       margin-top: 0;
+    }
+    & > a {
+      & > button {
+        margin: 0 1rem;
+        margin-top: 0;
+      }
     }
   }
   .library__title,

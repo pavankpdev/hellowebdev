@@ -67,12 +67,16 @@ const Navbar = () => {
             hide: !toggle,
           })}
         >
-          <div className="navitem navbar__navitem__1__sm">
-            Project Contributers List
-          </div>
-          <div className="navitem navbar__navitem__2__sm">
-            Resource Contributers List
-          </div>
+          <Link to="/project-contribution">
+            <div className="navitem navbar__navitem__1__sm">
+              Project Contributers List
+            </div>
+          </Link>
+          <Link to="/resource-contribution">
+            <div className="navitem navbar__navitem__2__sm">
+              Resource Contributers List
+            </div>
+          </Link>
           <div className="navbar__button__sm">
             <GitHubAuthBtn />
           </div>

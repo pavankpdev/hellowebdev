@@ -288,3 +288,31 @@ export const categoriess = [
   { id: "mysql", value: "MySQL" },
   { id: "mongodb", value: "MongoDB" },
 ];
+
+export const contributors = [
+  {
+    username: "pavankpdev",
+    image: "https://avatars.githubusercontent.com/u/52795191?v=4",
+    name: "Pavan Kumar",
+  },
+  {
+    username: "DevNM21",
+    image: "https://avatars.githubusercontent.com/u/46824652?v=4",
+    name: "Devakumar",
+  },
+  {
+    username: "sreeharshabalaji",
+    image: "https://avatars.githubusercontent.com/u/61697100?v=4",
+    name: "Sree Harsha R",
+  },
+  {
+    username: "thebestestkhan",
+    image: "https://avatars.githubusercontent.com/u/61203329?v=4",
+    name: "Abdul Rawoof Khan",
+  },
+  {
+    username: "iBharath01",
+    image: "https://avatars.githubusercontent.com/u/61697610?v=4",
+    name: "Bharath M U",
+  },
+];

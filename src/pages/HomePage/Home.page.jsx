@@ -78,12 +78,12 @@ const Home = () => {
           </button>
         </a>
 
-        <button className="btn primary">
-          <Link to="/new-resource">
+        <Link to="/new-resource">
+          <button className="btn primary">
             Submit a resource
             <i className="fas fa-plus fa-lg" style={{ marginLeft: ".5rem" }} />
-          </Link>
-        </button>
+          </button>
+        </Link>
         <a
           href="https://github.com/pavankpdev/web-dev-repo"
           target="_blank"

@@ -18,7 +18,7 @@ const Profile = () => {
           <img src={user.profilePic} alt="profilePic" className="rounded" />
           <h3>{user.fullname}</h3>
           <h5>
-            <a href={user.profileUrl} className="white" target="_blank">
+            <a href={user.profileUrl} className="white" target="_blank" rel="noreferrer">
               <i className="fab fa-github fa-lg" />@{user.username}
             </a>
           </h5>
