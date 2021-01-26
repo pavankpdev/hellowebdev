@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import classnames from "classnames";
 
 // styles
@@ -12,16 +12,15 @@ import {
 
 // Context
 import { CurrentUserContext } from "../../context/auth.context";
-import { useState } from "react/cjs/react.development";
 
 const GitHubAuthBtn = () => {
   const [dropDown, setDropDown] = useState(false);
-  const { isAuth, user, setUser: updateUser } = useContext(CurrentUserContext);
+  const { isAuth, user, setUser } = useContext(CurrentUserContext);
 
   useEffect(() => {
     if (localStorage.helloWebDev) {
       const userData = JSON.parse(localStorage.helloWebDev);
-      updateUser(userData.user, true);
+      setUser(userData.user, true);
     }
   }, []);
 
@@ -43,7 +42,7 @@ const GitHubAuthBtn = () => {
         profilePic: avatar_url,
       };
 
-      updateUser(currentUser, true);
+      setUser(currentUser, true);
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +51,7 @@ const GitHubAuthBtn = () => {
   const signOutUser = async () => {
     try {
       await firebaseAuth.signOut();
-      updateUser({}, false);
+      setUser({}, false);
       localStorage.removeItem("helloWebDev");
     } catch (error) {
       console.log(error);
