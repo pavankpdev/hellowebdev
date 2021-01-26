@@ -96,6 +96,7 @@ const AddResources = () => {
             onInputChange={handleInputChange}
             options={colourOptions}
             placeholder="Select a category "
+            creatable
           />
         </div>
         <button className="btn btn-sm btn-primary">Submit</button>
