@@ -27,9 +27,6 @@ const AddResources = () => {
     language: "",
   });
 
-  const handleResourceType = (newValue) =>
-    setNewResourceData({ ...newResourceData, type: newValue });
-
   const handleCategories = (newValue) =>
     setNewResourceData({
       ...newResourceData,
@@ -48,14 +45,15 @@ const AddResources = () => {
       language: newValue.map(({ value }) => value),
     });
 
-  const handleInput = (e) => {
-    const oldData = newResourceData;
-    return setNewResourceData({
+  const handleInput = (e) =>
+    setNewResourceData({
       ...newResourceData,
       [e.target.name]: e.target.value,
     });
-  };
 
+  const submitResources = () =>
+    console.log({ type: resourceType, ...newResourceData });
+  console.log(resourceType);
   return (
     <>
       <div className="add__new__container rounded">
@@ -163,7 +161,9 @@ const AddResources = () => {
             creatable
           />
         </div>
-        <button className="btn btn-sm btn-primary">Submit</button>
+        <button className="btn btn-sm btn-primary" onClick={submitResources}>
+          Submit
+        </button>
       </div>
     </>
   );
