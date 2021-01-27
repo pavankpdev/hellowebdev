@@ -12,7 +12,6 @@ const DarkSelectField = ({
   id,
   error,
   handleChange,
-  handleInputChange,
   options,
   creatable,
 }) => {
@@ -34,7 +33,6 @@ const DarkSelectField = ({
           styles={customReactSelectStyle}
           isClearable
           onChange={handleChange}
-          onInputChange={handleInputChange}
           options={options}
           placeholder={placeholder}
           isMulti
@@ -54,7 +52,6 @@ const DarkSelectField = ({
           styles={customReactSelectStyle}
           isClearable
           onChange={handleChange}
-          onInputChange={handleInputChange}
           options={options}
           placeholder={placeholder}
           isMulti

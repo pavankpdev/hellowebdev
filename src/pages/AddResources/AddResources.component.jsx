@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import CreatableSelect from "react-select/creatable";
+import classnames from "classnames";
 
 // Styles
 import "./AddResources.styles.scss";
@@ -12,43 +12,54 @@ import ResourceType from "../../components/CategoryCapsule/CategoryCapsule.compo
 import { colourOptions, resources } from "../../utils/data";
 
 const AddResources = () => {
-  const [resourceType, setResourceType] = useState([]);
+  const [resourceType, setResourceType] = useState("");
+  const [newResourceData, setNewResourceData] = useState({
+    type: "",
+    name: "",
+    description: "",
+    category: [],
+    url: "",
+    contributor: {
+      name: "",
+      image: "",
+    },
+    keywords: [],
+    language: "",
+  });
 
-  const handleChange = (newValue, actionMeta) => {
-    console.group("Value Changed");
-    console.log(newValue);
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
-  };
-  const handleInputChange = (inputValue, actionMeta) => {
-    console.group("Input Changed");
-    console.log(inputValue);
-    console.log(`action: ${actionMeta.action}`);
-    console.groupEnd();
-  };
+  const handleResourceType = (newValue) =>
+    setNewResourceData({ ...newResourceData, type: newValue });
 
-  const updateResourceType = (resource) => {
-    if (resourceType.includes(resource) && resourceType.length > 1)
-      return setResourceType(
-        resourceType.filter((category) => category !== resource)
-      );
+  const handleCategories = (newValue) =>
+    setNewResourceData({
+      ...newResourceData,
+      category: newValue.map(({ value }) => value),
+    });
 
-    if (!resourceType.includes(resource))
-      return setResourceType([...resourceType, resource]);
+  const handleKeywords = (newValue) =>
+    setNewResourceData({
+      ...newResourceData,
+      keywords: newValue.map(({ value }) => value),
+    });
+
+  const handleLanguage = (newValue) =>
+    setNewResourceData({
+      ...newResourceData,
+      language: newValue.map(({ value }) => value),
+    });
+
+  const handleInput = (e) => {
+    const oldData = newResourceData;
+    return setNewResourceData({
+      ...newResourceData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   return (
     <>
       <div className="add__new__container rounded">
         <h4>Add New Resource</h4>
-        <div className="resource__form">
-          <DarkInputFOrm
-            label="Resource Name"
-            id="resource"
-            type="text"
-            placeholder="Eg: Mongoose"
-          />
-        </div>
         <div className="resource__form ">
           <label>Resource Type</label>
           <div className="resource__type">
@@ -57,10 +68,30 @@ const AddResources = () => {
                 customClass="resource__capsule"
                 selected={resourceType}
                 {...resource}
-                SelectCategory={updateResourceType}
+                SelectCategory={setResourceType}
               />
             ))}
           </div>
+        </div>
+        <div className="resource__form">
+          <DarkSelectField
+            label="Language"
+            handleChange={handleLanguage}
+            options={colourOptions}
+            placeholder="Resource Language"
+            creatable
+          />
+        </div>
+        <div className="resource__form">
+          <DarkInputFOrm
+            label="Resource Name"
+            id="resource"
+            type="text"
+            placeholder="Eg: Mongoose"
+            name="name"
+            value={newResourceData.name}
+            onChange={handleInput}
+          />
         </div>
         <div className="resource__form">
           <DarkInputFOrm
@@ -68,6 +99,39 @@ const AddResources = () => {
             id="resource"
             type="text"
             placeholder="Eg: https://www.npmjs.com/package/mongoose"
+            name="url"
+            value={newResourceData.url}
+            onChange={handleInput}
+          />
+        </div>
+        <div
+          className={classnames("resource__form", {
+            hide: !resourceType.includes("courses"),
+          })}
+        >
+          <DarkInputFOrm
+            label="Resource thumbnail / image (url)"
+            id="resource"
+            type="url"
+            placeholder="Eg: https://example.com/Blue.png"
+            name="thumbnail"
+            value={newResourceData.thumbnail}
+            onChange={handleInput}
+          />
+        </div>
+        <div
+          className={classnames("resource__form", {
+            hide: !resourceType.includes("articles"),
+          })}
+        >
+          <DarkInputFOrm
+            label="Resource thumbnail / image (url)"
+            id="resource"
+            type="url"
+            placeholder="Eg: https://example.com/Blue.png"
+            name="thumbnail"
+            value={newResourceData.thumbnail}
+            onChange={handleInput}
           />
         </div>
         <div className="resource__form">
@@ -76,15 +140,26 @@ const AddResources = () => {
             id="resource"
             type="text"
             placeholder="Eg: Mongoose is a MongoDB object modeling tool....."
+            name="description"
+            value={newResourceData.description}
+            onChange={handleInput}
           />
         </div>
         <div className="resource__form">
           <DarkSelectField
             label="Category"
-            onChange={handleChange}
-            onInputChange={handleInputChange}
+            handleChange={handleCategories}
             options={colourOptions}
-            placeholder="Select a category "
+            placeholder="Select a category"
+            creatable
+          />
+        </div>
+        <div className="resource__form">
+          <DarkSelectField
+            label="Keywords"
+            handleChange={handleKeywords}
+            options={colourOptions}
+            placeholder="Add some valid keywords"
             creatable
           />
         </div>

@@ -8,7 +8,7 @@ const DarkInputField = ({ label, error, ...props }) => {
     <>
       <div className="form__group">
         <label for={props.id}>{label}</label>
-        <input className={classnames({ "input-error": error })} {...props} />
+        <input className={classnames({ "input-error": error })} {...props}  />
         <small className={classnames({ hide: !error })}>{error}</small>
       </div>
     </>
