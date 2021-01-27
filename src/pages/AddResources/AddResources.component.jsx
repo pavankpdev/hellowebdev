@@ -7,9 +7,13 @@ import "./AddResources.styles.scss";
 // Components
 import DarkInputFOrm from "../../components/DarkInputField/DarkInputField.component";
 import DarkSelectField from "../../components/DarkInputField/DarkSelectField.component";
-import { colourOptions } from "../../utils/data";
+import ResourceType from "../../components/CategoryCapsule/CategoryCapsule.component";
+
+import { colourOptions, resources } from "../../utils/data";
 
 const AddResources = () => {
+  const [resourceType, setResourceType] = useState([]);
+
   const handleChange = (newValue, actionMeta) => {
     console.group("Value Changed");
     console.log(newValue);
@@ -23,35 +27,16 @@ const AddResources = () => {
     console.groupEnd();
   };
 
-  const customStyles = {
-    option: (provided, state) => ({
-      ...provided,
-      borderRaduis: "10rem",
-      backgroundColor: "#16213e",
-      color: "white",
-      padding: 20,
-      ":hover": {
-        backgroundColor: "#171717",
-      },
-    }),
-    control: (styles) => ({
-      ...styles,
-      backgroundColor: "#16213e",
-      border: "2px solid #4136f1",
-      color: "white",
-    }),
-    input: (styles) => ({ ...styles, color: "white" }),
-    singleValue: (styles) => ({ ...styles, color: "white" }),
-    multiValueLabel: (styles) => ({ ...styles, color: "#16213e" }),
-    multiValueRemove: (styles) => ({
-      ...styles,
-      color: "#16213e",
-      ":hover": {
-        backgroundColor: "#16213e",
-        color: "white",
-      },
-    }),
+  const updateResourceType = (resource) => {
+    if (resourceType.includes(resource) && resourceType.length > 1)
+      return setResourceType(
+        resourceType.filter((category) => category !== resource)
+      );
+
+    if (!resourceType.includes(resource))
+      return setResourceType([...resourceType, resource]);
   };
+
   return (
     <>
       <div className="add__new__container rounded">
@@ -64,14 +49,18 @@ const AddResources = () => {
             placeholder="Eg: Mongoose"
           />
         </div>
-        <div className="resource__form">
-          <DarkSelectField
-            label="Resource type"
-            onChange={handleChange}
-            onInputChange={handleInputChange}
-            options={colourOptions}
-            placeholder="Select"
-          />
+        <div className="resource__form ">
+          <label>Resource Type</label>
+          <div className="resource__type">
+            {resources.map((resource) => (
+              <ResourceType
+                customClass="resource__capsule"
+                selected={resourceType}
+                {...resource}
+                SelectCategory={updateResourceType}
+              />
+            ))}
+          </div>
         </div>
         <div className="resource__form">
           <DarkInputFOrm

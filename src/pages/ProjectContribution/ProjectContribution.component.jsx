@@ -1,7 +1,7 @@
 import React from "react";
 import "./ProjectContribution.styles.scss";
 
-import { contributors as fakeData } from "../../utils/data";
+import { projectContributors } from "../../utils/data";
 
 const ProjectContribution = () => {
   return (
@@ -17,7 +17,7 @@ const ProjectContribution = () => {
         </p>
 
         <div className="project__contribution__card rounded">
-          {fakeData.map(({ username, image, name }) => (
+          {projectContributors.map(({ username, image, name }) => (
             <div className="project__contribution__profile">
               <a
                 href={`https://github.com/${username}`}

@@ -12,14 +12,23 @@
 
   & > .resource__form {
     margin: 1rem;
+    & > .resource__type {
+      display: flex;
+      flex-wrap: wrap;
+      & > .resource__capsule { margin: 0.3rem 0.1rem;
+        width: fit-content;
+        border: 2px solid #4136f1;
+        font-weight: 400;
+        padding: 0.2rem 1rem;
+        font-size: 1rem !important;
+      
+      }
+    }
   }
-
   & > button {
     margin: 0 auto;
   }
 }
-
-
 
 @media (min-width: 768px) {
   .add__new__container {
@@ -29,6 +38,7 @@
 
 @media (min-width: 1200px) {
   .add__new__container {
-    margin: 2rem 25rem;padding: 2rem 2rem;
+    margin: 2rem 25rem;
+    padding: 2rem 2rem;
   }
 }

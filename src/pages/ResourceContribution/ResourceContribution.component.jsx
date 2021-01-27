@@ -1,7 +1,7 @@
 import React from "react";
 import "./ResourceContribution.style.scss";
 
-import { contributors as fakeData } from "../../utils/data";
+import { resourceContributors } from "../../utils/data";
 
 const ResourceContribution = () => {
   return (
@@ -17,7 +17,7 @@ const ResourceContribution = () => {
         </p>
 
         <div className="resource__contribution__card rounded">
-          {fakeData.map(({ username, image, name }) => (
+          {resourceContributors.map(({ username, image, name }) => (
             <div className="resource__contribution__profile">
               <a
                 href={`https://github.com/${username}`}

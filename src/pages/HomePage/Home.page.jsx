@@ -14,28 +14,13 @@ import ImageCard from "../../components/ImageCard/ImageCard.component";
 import LightTextInput from "../../components/LightFormInput/LightFormInput.component";
 
 // Sample data
-import {
-  usefullLibraries,
-  codeSnippetss,
-  amazingArticless,
-  freeCoursess,
-  categoriess,
-} from "../../utils/data";
+import { categoriess, homeData } from "../../utils/data";
 
 const Home = () => {
+  const [homePageData, setHomePageData] = useState(homeData);
   const [categories, setCategories] = useState(categoriess);
   const [filter, setFilter] = useState(["react"]);
-  const [usefulLibraries, setUsefulLibraries] = useState(usefullLibraries);
-  const [codeSnippets, setCodeSnippets] = useState(codeSnippetss);
-  const [freeCourses, setFreeCourses] = useState(freeCoursess);
-  const [amazingArticles, setAmazingArticles] = useState(amazingArticless);
   const [searchInput, setSearchInput] = useState("");
-  const [DataHolder, setDataHolder] = useState({
-    usefulLibraries,
-    codeSnippets,
-    freeCourses,
-    amazingArticles,
-  });
 
   // Sort the list based on search string
 
@@ -113,7 +98,7 @@ const Home = () => {
           <div className="usefull__libraries">
             <h2 className="library__title">Usefull Libraries</h2>
             <div className="home__library__card__container">
-              {usefulLibraries.map((library) => (
+              {homePageData.libraries.map((library) => (
                 <NonImageCard {...library} />
               ))}
             </div>
@@ -121,7 +106,7 @@ const Home = () => {
           <div className="code__snippet">
             <h2 className="code__snippet__title">Code Snippets</h2>
             <div className="home__codesnippet__card__container">
-              {codeSnippets.map((snippet) => (
+              {homePageData.codeSnippets.map((snippet) => (
                 <NonImageCard {...snippet} />
               ))}
             </div>
@@ -129,7 +114,7 @@ const Home = () => {
           <div className="free__courses">
             <h2 className="free__courses__title">Free Courses</h2>
             <div className="home__free__courses__card__container">
-              {freeCourses.map((course) => (
+              {homePageData.courses.map((course) => (
                 <ImageCard {...course} />
               ))}
             </div>
@@ -137,7 +122,7 @@ const Home = () => {
           <div className="amazing__articles">
             <h2 className="amazing__articles__title">Amazing articles</h2>
             <div className="home__amazing__articles__card__container">
-              {amazingArticles.map((article) => (
+              {homePageData.articles.map((article) => (
                 <ImageCard {...article} />
               ))}
             </div>

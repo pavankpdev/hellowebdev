@@ -8,7 +8,7 @@ import { CurrentUserContext } from "../../context/auth.context";
 // Component
 import NonImageCard from "../../components/NonImageCard/NonImageCard.component";
 
-import { usefullLibraries } from "../../utils/data";
+import { homeData } from "../../utils/data";
 const Profile = () => {
   const { user } = useContext(CurrentUserContext);
   return (
@@ -18,13 +18,18 @@ const Profile = () => {
           <img src={user.profilePic} alt="profilePic" className="rounded" />
           <h3>{user.fullname}</h3>
           <h5>
-            <a href={user.profileUrl} className="white" target="_blank" rel="noreferrer">
+            <a
+              href={user.profileUrl}
+              className="white"
+              target="_blank"
+              rel="noreferrer"
+            >
               <i className="fab fa-github fa-lg" />@{user.username}
             </a>
           </h5>
         </div>
         <div className="profile__contents">
-          {usefullLibraries.map((library) => (
+          {homeData.libraries.map((library) => (
             <NonImageCard {...library} />
           ))}
         </div>
