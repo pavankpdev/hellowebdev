@@ -67,6 +67,7 @@ const AddResources = () => {
                 selected={resourceType}
                 {...resource}
                 SelectCategory={setResourceType}
+                key={resource.id}
               />
             ))}
           </div>

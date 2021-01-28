@@ -17,8 +17,8 @@ const ProjectContribution = () => {
         </p>
 
         <div className="project__contribution__card rounded">
-          {projectContributors.map(({ username, image, name }) => (
-            <div className="project__contribution__profile">
+          {projectContributors.map(({ username, image, name, id }) => (
+            <div className="project__contribution__profile" key={id}>
               <a
                 href={`https://github.com/${username}`}
                 target="_blank"

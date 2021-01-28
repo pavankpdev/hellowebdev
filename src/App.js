@@ -1,6 +1,8 @@
+// Libraries
 import React, { Suspense } from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 
+// Pre-load Components
 import Navbar from "./components/Navbar/Navbar.component";
 import Spinner from "./components/Spinner.component";
 
@@ -10,7 +12,7 @@ import PrivateRoute from "./HOC/PrivateRoute.HOC";
 // Context
 import { CurrentUserContextProvider } from "./context/auth.context";
 
-// code splitting with react lazy
+// Lazy load components
 const HomePage = React.lazy(() => import("./pages/HomePage/Home.page"));
 const AddResourses = React.lazy(() =>
   import("./pages/AddResources/AddResources.component")
@@ -28,31 +30,29 @@ const ResourceDetails = React.lazy(() =>
 
 function App() {
   return (
-    <BrowserRouter>
-      <CurrentUserContextProvider>
-        <div className="app">
-          <Navbar />
-          <Switch>
-            <Suspense fallback={<Spinner />}>
-              <Route exact path="/" component={HomePage} />
-              <Route exact path="/new-resource" component={AddResourses} />
-              <Route
-                exact
-                path="/project-contribution"
-                component={ProjectContribution}
-              />
-              <Route
-                exact
-                path="/resource-contribution"
-                component={ResourceContribution}
-              />
-              <Route exact path="/profile" component={Profile} />
-              <Route exact path="/resource/:id" component={ResourceDetails} />
-            </Suspense>
-          </Switch>
-        </div>
-      </CurrentUserContextProvider>
-    </BrowserRouter>
+    <CurrentUserContextProvider>
+      <div className="app">
+        <Navbar />
+        <Switch>
+          <Suspense fallback={<Spinner />}>
+            <Route exact path="/" component={HomePage} />
+            <Route exact path="/new-resource" component={AddResourses} />
+            <Route
+              exact
+              path="/project-contribution"
+              component={ProjectContribution}
+            />
+            <Route
+              exact
+              path="/resource-contribution"
+              component={ResourceContribution}
+            />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/resource/:id" component={ResourceDetails} />
+          </Suspense>
+        </Switch>
+      </div>
+    </CurrentUserContextProvider>
   );
 }
 

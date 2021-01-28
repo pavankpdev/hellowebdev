@@ -30,7 +30,7 @@ const Profile = () => {
         </div>
         <div className="profile__contents">
           {homeData.libraries.map((library) => (
-            <NonImageCard {...library} />
+            <NonImageCard {...library} key={library.id} />
           ))}
         </div>
       </div>

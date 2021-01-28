@@ -50,6 +50,7 @@ const ResourceDetail = () => {
                 id={categoryList}
                 SelectCategory={() => {}}
                 customClass="resource__capsule"
+                key={categoryList.id}
               />
             ))}
           </div>

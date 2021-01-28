@@ -17,8 +17,8 @@ const ResourceContribution = () => {
         </p>
 
         <div className="resource__contribution__card rounded">
-          {resourceContributors.map(({ username, image, name }) => (
-            <div className="resource__contribution__profile">
+          {resourceContributors.map(({ username, image, name, id }) => (
+            <div className="resource__contribution__profile" key={id}>
               <a
                 href={`https://github.com/${username}`}
                 target="_blank"
