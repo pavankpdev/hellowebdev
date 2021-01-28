@@ -1,5 +1,6 @@
 // Action Types
 import { AUTH_USER } from "./User.type";
+import { REHYDRATE } from "../../../utils";
 
 const INITIAL_STATE = {
   fullname: " ",
@@ -16,6 +17,9 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         ...action.payload,
       };
+
+    case REHYDRATE:
+      return action.payload ? action.payload.user : INITIAL_STATE;
 
     default:
       return {

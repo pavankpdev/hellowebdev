@@ -1,4 +1,3 @@
-
 export const categoriess = [
   { id: "react", value: "ReactJS" },
   { id: "firebase", value: "Firebase" },
@@ -385,3 +384,37 @@ export const profile = {
     },
   ],
 };
+
+export const firee = [
+  {
+    id: 5519145,
+    name: "express",
+    description: "Fast, unopinionated, minimalist web framework for node.",
+    category: ["nodejs", "backend"],
+    url: "https://www.npmjs.com/package/express/",
+    contributor: {
+      name: "Pavan Kumar",
+      image: "https://avatars.githubusercontent.com/u/52795191?v=4",
+      id: 52795191,
+    },
+    keywords: ["nodejs", "mern", "expressjs", "node-express"],
+    language: "JavaScript",
+    resourceType: "libraries",
+  },
+  {
+    id: 5519144,
+    name: "mysql",
+    description:
+      "This is a node.js driver for mysql. It is written in JavaScript, does not require compiling, and is 100% MIT licensed.",
+    category: ["mysql", "database", "RDMS"],
+    url: "https://www.npmjs.com/package/mysql/",
+    contributor: {
+      name: "Pavan Kumar",
+      image: "https://avatars.githubusercontent.com/u/52795191?v=4",
+      id: 52795191,
+    },
+    keywords: ["mysql", "database", "relation", "node-mysql"],
+    language: "JavaScript",
+    resourceType: "libraries",
+  },
+];

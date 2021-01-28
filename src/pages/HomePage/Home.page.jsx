@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import classnames from "classnames";
 
 // styles
 import "./Home.styles.scss";
@@ -12,14 +14,39 @@ import CategoryList from "../../components/CategoryCapsule/CategoryCapsule.compo
 import NonImageCard from "../../components/NonImageCard/NonImageCard.component";
 import ImageCard from "../../components/ImageCard/ImageCard.component";
 import Collapsible from "../../components/Collapsible/Collapsible.component";
-// Sample data
-import { categoriess, homeData } from "../../utils/data";
+import Spinner from "../../components/Spinner.component";
+
+// Redux Action
+import {
+  getResources,
+  getCategories,
+} from "../../Redux/reducer/Resource/Resource.action";
 
 const Home = () => {
-  const [homePageData, setHomePageData] = useState(homeData);
-  const [categories, setCategories] = useState(categoriess);
+  const [homePageData, setHomePageData] = useState({
+    libraries: [],
+    codeSnippets: [],
+    courses: [],
+    articles: [],
+  });
+  const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState(["react"]);
   const [searchInput, setSearchInput] = useState("");
+
+  // Redux state
+  const reduxState = useSelector(({ resources }) => ({ resources }));
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getResourcesAction = async () => {
+      const resources = await dispatch(getResources());
+      const categoriesList = await dispatch(getCategories());
+      setCategories(categoriesList.payload);
+      setHomePageData(resources.payload);
+    };
+    getResourcesAction();
+  }, []);
 
   // Sort the list based on search string
   const SelectCategory = (id) => {
@@ -79,7 +106,14 @@ const Home = () => {
           </button>
         </a>
       </div>
-      <div className="home__content container-fluid">
+      <div className={classnames({ hide: !reduxState.resources.loading })}>
+        <Spinner />
+      </div>
+      <div
+        className={classnames("home__content container-fluid", {
+          hide: reduxState.resources.loading,
+        })}
+      >
         <div className="home__sidebar__container">
           <SideBar />
         </div>

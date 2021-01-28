@@ -7,9 +7,10 @@ import { persistConfig } from "../../configs/reduxPersist.config";
 
 // Reducers
 import user from "./User/User.reducer";
+import resources from "./Resource/Resource.reducer";
 
 // root reducer
-const rootReducer = combineReducers({ user });
+const rootReducer = combineReducers({ user,resources });
 
 // warpping up the root reducer with redux-persist to store state in localstorage storage
 export const persistedState = persistReducer(persistConfig, rootReducer);

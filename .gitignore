@@ -11,6 +11,9 @@
 # production
 /build
 
+
+/src/seed.js
+
 # misc
 .DS_Store
 .env.local

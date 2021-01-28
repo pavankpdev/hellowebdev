@@ -14,3 +14,4 @@ export const firebaseAuth = firebase.auth();
 export const githubAuthProvider = new firebase.auth.GithubAuthProvider().addScope(
   "read:user"
 );
+export const firestore = firebase.firestore();
