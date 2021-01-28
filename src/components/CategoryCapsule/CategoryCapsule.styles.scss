@@ -6,7 +6,7 @@
   border: 4px solid #4136f1;
   font-weight: 400;
   padding: 0.2rem 1rem;
-  font-size: 1rem !important;
+  font-size: 1rem;
 }
 
 .category__capsule__selected {
@@ -16,6 +16,6 @@
 @media (min-width: 1200px) {
   .category__capsule {
     margin: 0.3rem 1rem;
-    font-size: 1.5rem !important;
+    font-size: 1.5rem;
   }
 }

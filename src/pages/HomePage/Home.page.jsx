@@ -98,7 +98,7 @@ const Home = () => {
             <Collapsible title="Usefull Libraries">
               <div className="home__library__card__container">
                 {homePageData.libraries.map((library) => (
-                  <NonImageCard {...library} />
+                  <NonImageCard {...library} btnText="visit library" />
                 ))}
               </div>
             </Collapsible>
@@ -107,7 +107,7 @@ const Home = () => {
             <Collapsible title="Code Snippets">
               <div className="home__codesnippet__card__container">
                 {homePageData.codeSnippets.map((snippet) => (
-                  <NonImageCard {...snippet} />
+                  <NonImageCard {...snippet}  btnText="view code"  />
                 ))}
               </div>
             </Collapsible>
@@ -116,7 +116,7 @@ const Home = () => {
             <Collapsible title="Free Courses">
               <div className="home__free__courses__card__container">
                 {homePageData.courses.map((course) => (
-                  <ImageCard {...course} />
+                  <ImageCard {...course}  btnText="Visit course" />
                 ))}
               </div>
             </Collapsible>
@@ -125,7 +125,7 @@ const Home = () => {
             <Collapsible title="Amazing articles">
               <div className="home__amazing__articles__card__container">
                 {homePageData.articles.map((article) => (
-                  <ImageCard {...article} />
+                  <ImageCard {...article}   btnText="read article"/>
                 ))}
               </div>
             </Collapsible>

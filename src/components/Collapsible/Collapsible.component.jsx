@@ -9,15 +9,15 @@ const Collapsible = ({ title, children }) => {
     <>
       <div className="collapsible__container">
         <div className="collapsible__menu">
-          <h2>{title}</h2>
+          <h2 className="pointer" onClick={() => setTogggle(!toggle)}>{title}</h2>
           {toggle ? (
             <i
-              className="fas fa-angle-up fa-2x"
+              className="fas fa-angle-up fa-2x pointer"
               onClick={() => setTogggle(!toggle)}
             />
           ) : (
             <i
-              className="fas fa-angle-down fa-2x"
+              className="fas fa-angle-down fa-2x pointer"
               onClick={() => setTogggle(!toggle)}
             />
           )}

@@ -1,8 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./NonImageCard.styles.scss";
 
-const NonImageCard = ({ name, description, url, contributor }) => {
+const NonImageCard = ({
+  name,
+  description,
+  url,
+  contributor,
+  btnText,
+  ...props
+}) => {
   return (
     <>
       <div className="library__container">
@@ -16,7 +24,21 @@ const NonImageCard = ({ name, description, url, contributor }) => {
           </h3>
           <div className="library__card__body">
             <p>{description}</p>
-            <button className="btn btn-sm btn-primary">Learn more</button>
+            <Link
+              to={{
+                pathname: "/resource/123",
+                state: {
+                  name,
+                  description,
+                  url,
+                  contributor,
+                  btnText,
+                  ...props,
+                },
+              }}
+            >
+              <button className="btn btn-sm btn-primary">Learn more</button>
+            </Link>
           </div>
           <div className="library__card__footer">
             <h5>Listed By</h5>

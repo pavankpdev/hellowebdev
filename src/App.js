@@ -22,6 +22,9 @@ const ResourceContribution = React.lazy(() =>
   import("./pages/ResourceContribution/ResourceContribution.component")
 );
 const Profile = React.lazy(() => import("./pages/Profile/Profile.component"));
+const ResourceDetails = React.lazy(() =>
+  import("./pages/ResourceDetail/ResourceDetail.component")
+);
 
 function App() {
   return (
@@ -44,6 +47,7 @@ function App() {
                 component={ResourceContribution}
               />
               <Route exact path="/profile" component={Profile} />
+              <Route exact path="/resource/:id" component={ResourceDetails} />
             </Suspense>
           </Switch>
         </div>

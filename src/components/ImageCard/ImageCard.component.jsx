@@ -1,8 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import "./ImageCard.styles.scss";
 
-const ImageCard = ({ thumbnail, name, description, contributor }) => {
+const ImageCard = ({
+  thumbnail,
+  name,
+  description,
+  contributor,
+  btnText,
+  ...props
+}) => {
   return (
     <>
       <div className="image__card__container">
@@ -18,7 +26,21 @@ const ImageCard = ({ thumbnail, name, description, contributor }) => {
             </h3>
             <div className="image__card__card__body">
               <p>{description}</p>
-              <button className="btn btn-sm btn-primary">Learn more</button>
+              <Link
+                to={{
+                  pathname: "/resource/123",
+                  state: {
+                    name,
+                    description,
+                    thumbnail,
+                    contributor,
+                    btnText,
+                    ...props,
+                  },
+                }}
+              >
+                <button className="btn btn-sm btn-primary">Learn more</button>
+              </Link>
             </div>
             <div className="image__card__card__footer">
               <h5>Listed By</h5>
