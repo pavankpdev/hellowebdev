@@ -1,6 +1,6 @@
 .white,
 .default {
-  color:  #fff;
+  color: #fff;
 }
 
 .primary {
@@ -21,4 +21,6 @@
 .danger {
   color: $danger;
 }
-
+.app-bg-color {
+  color: $app-bg-color;
+}

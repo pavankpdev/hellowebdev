@@ -26,6 +26,7 @@
     border-radius: 6px;
     background-color: $default;
     padding: 0.5rem 1rem;
+
     & > .logout__user {
       cursor: pointer;
       display: flex;
@@ -40,5 +41,19 @@
         color: $secondary;
       }
     }
+  }
+}
+.user__profile {
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  color: $primary;
+  & > h6 {
+    margin-right: 0.5rem;
+    font-weight: $font-weight-normal;
+  }
+
+  &:hover {
+    color: $secondary;
   }
 }

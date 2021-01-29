@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 // styles
 import "./GitHubAuthBtn.styles.scss";
@@ -62,9 +63,15 @@ const GitHubAuthBtn = () => {
           <img src={reduxState.user.user.profilePic} alt="profile Pic" />
         </div>
         <div className={classnames("profile__dropdown", { hide: !dropDown })}>
+          <Link to="/profile">
+            <div className="user__profile">
+              <h6 className="app-bg-color">Profile</h6>
+              <i className="fas fa-user app-bg-color" />
+            </div>
+          </Link>
           <div className="logout__user" onClick={signOutUser}>
-            <h6>Logout</h6>
-            <i className="fas fa-sign-out-alt" />
+            <h6 className="app-bg-color">Logout</h6>
+            <i className="fas fa-sign-out-alt app-bg-color" />
           </div>
         </div>
       </div>
