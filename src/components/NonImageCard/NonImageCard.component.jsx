@@ -8,7 +8,7 @@ const NonImageCard = ({
   description,
   url,
   contributor,
-  btnText,
+  id,
   ...props
 }) => {
   return (
@@ -24,19 +24,7 @@ const NonImageCard = ({
           </h3>
           <div className="library__card__body">
             <p>{description}</p>
-            <Link
-              to={{
-                pathname: "/resource/123",
-                state: {
-                  name,
-                  description,
-                  url,
-                  contributor,
-                  btnText,
-                  ...props,
-                },
-              }}
-            >
+            <Link to={`/resource/${id}`}>
               <button className="btn btn-sm btn-primary">Learn more</button>
             </Link>
           </div>

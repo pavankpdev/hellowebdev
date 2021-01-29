@@ -1,5 +1,9 @@
 // Types
-import { GET_RESOURCES, GET_CATEGORIES } from "./Resource.type";
+import {
+  GET_RESOURCES,
+  GET_CATEGORIES,
+  GET_SPECIFIED_RESOURCE,
+} from "./Resource.type";
 
 // Configs
 import { firestore } from "../../../configs/firebase.config";
@@ -53,6 +57,25 @@ export const getCategories = () => async (dispatch) => {
     );
 
     return dispatch(requestSuccess(GET_CATEGORIES, categories));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// Action to get specified resource
+export const getSpecifiedResource = (id) => async (dispatch) => {
+  try {
+    dispatch(loading());
+    let resource = [];
+    const resource_snapshot = await firestore
+      .collection("resources")
+      .where("id", "==", id)
+      .get();
+
+    // Processing the snapshot from firesbase
+    resource_snapshot.docs.map((doc) => (resource = [...resource, doc.data()]));
+
+    return dispatch(requestSuccess(GET_SPECIFIED_RESOURCE, resource));
   } catch (error) {
     console.log(error);
   }

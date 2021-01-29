@@ -8,7 +8,7 @@ const ImageCard = ({
   name,
   description,
   contributor,
-  btnText,
+  id,
   ...props
 }) => {
   return (
@@ -26,19 +26,7 @@ const ImageCard = ({
             </h3>
             <div className="image__card__card__body">
               <p>{description}</p>
-              <Link
-                to={{
-                  pathname: "/resource/123",
-                  state: {
-                    name,
-                    description,
-                    thumbnail,
-                    contributor,
-                    btnText,
-                    ...props,
-                  },
-                }}
-              >
+              <Link to={`/resource/${id}`}>
                 <button className="btn btn-sm btn-primary">Learn more</button>
               </Link>
             </div>

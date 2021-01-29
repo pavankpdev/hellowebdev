@@ -1,11 +1,16 @@
 // Types
-import { GET_RESOURCES, GET_CATEGORIES } from "./Resource.type";
+import {
+  GET_RESOURCES,
+  GET_CATEGORIES,
+  GET_SPECIFIED_RESOURCE,
+} from "./Resource.type";
 import { REHYDRATE } from "../../../utils";
 
 const INITIAL_STATE = {
   resources: { libraries: [], codeSnippets: [], courses: [], articles: [] },
   loading: false,
   categories: [],
+  selected: [],
 };
 
 const resourceReducer = (state = INITIAL_STATE, action) => {
@@ -27,6 +32,13 @@ const resourceReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         categories: action.payload,
+        loading: false,
+      };
+      
+    case GET_SPECIFIED_RESOURCE:
+      return {
+        ...state,
+        selected: action.payload,
         loading: false,
       };
 
