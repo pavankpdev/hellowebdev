@@ -63,10 +63,20 @@ const AddResources = () => {
           name: reduxState.user.user.fullname,
           image: reduxState.user.user.profilePic,
           id: reduxState.user.user.id,
+          username: reduxState.user.user.username,
         },
         ...newResourceData,
       })
     );
+    setResourceType("");
+    setNewResourceData({
+      name: "",
+      description: "",
+      category: [],
+      url: "",
+      keywords: [],
+      language: "",
+    });
 
     return toast.success(newResource.payload, {
       position: "top-center",

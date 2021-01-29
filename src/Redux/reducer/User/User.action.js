@@ -30,7 +30,14 @@ export const authUser = ({
   } else {
     firestore
       .collection("users")
-      .add({ username, fullname, profileUrl, profilePic, contribution: [] });
+      .add({
+        id,
+        username,
+        fullname,
+        profileUrl,
+        profilePic,
+        contribution: [],
+      });
     return dispatch(
       requestSuccess(AUTH_USER, {
         id,

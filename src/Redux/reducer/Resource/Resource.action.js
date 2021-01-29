@@ -1,6 +1,3 @@
-// Library
-import { v4 as uuidv4 } from "uuid";
-
 // Types
 import {
   GET_RESOURCES,
@@ -14,18 +11,17 @@ import { firestore } from "../../../configs/firebase.config";
 
 // Utilities
 import { loading, requestSuccess, getCurrentDateTime } from "../../../utils";
+import {
+  getConditionDataFromFirebase,
+  addNewDocumentToFirebase,
+  getDataFromFirebase,
+} from "../../../utils/firebase/firebase.util";
 
 // Action to get all the resouces from firestore
 export const getResources = () => async (dispatch) => {
   try {
     dispatch(loading());
-    let addResources = [];
-    const resource_snapshot = await firestore.collection("resources").get();
-
-    // Processing the snapshot from firesbase
-    resource_snapshot.docs.map(
-      (doc) => (addResources = [...addResources, doc.data()])
-    );
+    let addResources = await getDataFromFirebase("resources");
 
     return dispatch(
       requestSuccess(GET_RESOURCES, {
@@ -52,13 +48,7 @@ export const getResources = () => async (dispatch) => {
 export const getCategories = () => async (dispatch) => {
   try {
     dispatch(loading());
-    let categories = [];
-    const categories_snapshot = await firestore.collection("categories").get();
-
-    // Processing the snapshot from firesbase
-    categories_snapshot.docs.map(
-      (doc) => (categories = [...categories, doc.data()])
-    );
+    let categories = await getDataFromFirebase("categories");
 
     return dispatch(requestSuccess(GET_CATEGORIES, categories));
   } catch (error) {
@@ -70,14 +60,8 @@ export const getCategories = () => async (dispatch) => {
 export const getSpecifiedResource = (id) => async (dispatch) => {
   try {
     dispatch(loading());
-    let resource = [];
-    const resource_snapshot = await firestore
-      .collection("resources")
-      .where("id", "==", id)
-      .get();
 
-    // Processing the snapshot from firesbase
-    resource_snapshot.docs.map((doc) => (resource = [...resource, doc.data()]));
+    const resource = await getConditionDataFromFirebase("resources", { id });
 
     return dispatch(requestSuccess(GET_SPECIFIED_RESOURCE, resource));
   } catch (error) {
@@ -89,11 +73,26 @@ export const getSpecifiedResource = (id) => async (dispatch) => {
 export const addNewResource = (newResourceData) => async (dispatch) => {
   try {
     dispatch(loading());
-    firestore.collection("resources").add({
+    await addNewDocumentToFirebase("resources", {
       uploadDate: getCurrentDateTime("date"),
-      id: uuidv4(),
+      id: Date.now(),
       ...newResourceData,
     });
+
+    let ContributorExist = await getConditionDataFromFirebase("contributors", {
+      id: newResourceData.contributor.id,
+    });
+
+    if (ContributorExist.length === 0) {
+      await addNewDocumentToFirebase("contributors", {
+        username: newResourceData.contributor.username,
+        image: newResourceData.contributor.image,
+        name: newResourceData.contributor.name,
+        id: newResourceData.contributor.id,
+        contributorType: "resource",
+      });
+    }
+
     return dispatch(
       requestSuccess(ADD_NEW_RESOURCE, "Resource succesfully added")
     );
