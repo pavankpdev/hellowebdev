@@ -33,6 +33,7 @@ const Home = () => {
   });
   const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState(["react"]);
+  
   const [searchInput, setSearchInput] = useState("");
 
   // Redux state
