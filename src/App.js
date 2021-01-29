@@ -9,9 +9,6 @@ import Spinner from "./components/Spinner.component";
 // HOC
 import PrivateRoute from "./HOC/PrivateRoute.HOC";
 
-// Context
-import { CurrentUserContextProvider } from "./context/auth.context";
-
 // Lazy load components
 const HomePage = React.lazy(() => import("./pages/HomePage/Home.page"));
 const AddResourses = React.lazy(() =>
@@ -30,13 +27,12 @@ const ResourceDetails = React.lazy(() =>
 
 function App() {
   return (
-    <CurrentUserContextProvider>
       <div className="app">
         <Navbar />
         <Switch>
           <Suspense fallback={<Spinner />}>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/new-resource" component={AddResourses} />
+            <PrivateRoute exact path="/new-resource" component={AddResourses} />
             <Route
               exact
               path="/project-contribution"
@@ -47,12 +43,11 @@ function App() {
               path="/resource-contribution"
               component={ResourceContribution}
             />
-            <Route exact path="/profile" component={Profile} />
+            <PrivateRoute exact path="/profile" component={Profile} />
             <Route exact path="/resource/:id" component={ResourceDetails} />
           </Suspense>
         </Switch>
       </div>
-    </CurrentUserContextProvider>
   );
 }
 

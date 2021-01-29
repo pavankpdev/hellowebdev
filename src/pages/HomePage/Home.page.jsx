@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import algoliasearch from "algoliasearch/lite";
 import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
+import { toast, ToastContainer } from "react-toastify";
 
 // styles
+import "react-toastify/dist/ReactToastify.css";
 import "./Home.styles.scss";
 
 // Components
@@ -37,6 +39,7 @@ const Home = () => {
   const reduxState = useSelector(({ resources }) => ({ resources }));
 
   const dispatch = useDispatch();
+  const location = useLocation();
 
   useEffect(() => {
     const getResourcesAction = async () => {
@@ -47,6 +50,19 @@ const Home = () => {
     };
     getResourcesAction();
   }, []);
+
+  useEffect(() => {
+    toast.warn(location.state, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      onClose: () => (location.state = ""),
+    });
+  }, [location.state]);
 
   // Sort the list based on search string
   const SelectCategory = (id) => {
@@ -64,6 +80,7 @@ const Home = () => {
   );
   return (
     <>
+      <ToastContainer />
       <h1 className="hero__text container">
         Curated Collection of all web development resources in one place.
       </h1>

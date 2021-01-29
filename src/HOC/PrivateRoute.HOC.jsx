@@ -1,23 +1,21 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route, Redirect } from "react-router-dom";
-
-// Context
-import { CurrentUserContext } from "../context/auth.context";
+import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ component: RouteComponent, ...rest }) => {
-  const { isAuth } = useContext(CurrentUserContext);
-  console.log(isAuth);
+  const reduxState = useSelector(({ user }) => ({ user }));
+
   return (
     <Route
       {...rest}
       render={() =>
-        isAuth ? (
+        reduxState.user.isAuth ? (
           <RouteComponent {...rest} />
         ) : (
           <Redirect
             to={{
               pathname: "/",
-              state: "You need to be signined to add new resoure",
+              state: "You need to signin to visit that page",
             }}
           />
         )

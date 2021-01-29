@@ -1,5 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classnames from "classnames";
+import { useDispatch, useSelector } from "react-redux";
 
 // styles
 import "./GitHubAuthBtn.styles.scss";
@@ -10,19 +11,14 @@ import {
   githubAuthProvider,
 } from "../../configs/firebase.config";
 
-// Context
-import { CurrentUserContext } from "../../context/auth.context";
+// Redux Action
+import { authUser, signOut } from "../../Redux/reducer/User/User.action";
 
 const GitHubAuthBtn = () => {
   const [dropDown, setDropDown] = useState(false);
-  const { isAuth, user, setUser } = useContext(CurrentUserContext);
 
-  useEffect(() => {
-    if (localStorage.helloWebDev) {
-      const userData = JSON.parse(localStorage.helloWebDev);
-      setUser(userData.user, true);
-    }
-  }, []);
+  const reduxState = useSelector(({ user }) => ({ user }));
+  const dispatch = useDispatch();
 
   const githubSignin = async () => {
     try {
@@ -41,8 +37,7 @@ const GitHubAuthBtn = () => {
         profileUrl: html_url,
         profilePic: avatar_url,
       };
-
-      setUser(currentUser, true);
+      return await dispatch(authUser(currentUser));
     } catch (error) {
       console.log(error);
     }
@@ -51,19 +46,18 @@ const GitHubAuthBtn = () => {
   const signOutUser = async () => {
     try {
       await firebaseAuth.signOut();
-      setUser({}, false);
-      localStorage.removeItem("helloWebDev");
+      return dispatch(signOut());
     } catch (error) {
       console.log(error);
     }
   };
 
-  return isAuth ? (
+  return reduxState.user.isAuth ? (
     <>
       <div className="profile__data_container">
         <div className="profile__data" onClick={() => setDropDown(!dropDown)}>
-          <h5>{user.fullname}</h5>
-          <img src={user.profilePic} alt="profile Pic" />
+          <h5>{reduxState.user.user.fullname}</h5>
+          <img src={reduxState.user.user.profilePic} alt="profile Pic" />
         </div>
         <div className={classnames("profile__dropdown", { hide: !dropDown })}>
           <div className="logout__user" onClick={signOutUser}>

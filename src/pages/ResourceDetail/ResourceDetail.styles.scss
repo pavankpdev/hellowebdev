@@ -3,7 +3,7 @@
 .resource__details__container {
   background-color: $primary;
   padding: 2rem 2rem;
-  margin: 0 2rem;
+  margin: 0 1rem;
   margin-top: 3rem;
 
   & > img {
@@ -63,6 +63,7 @@
 
 @media (min-width: 768px) {
   .resource__details__container {
+    margin: 2rem 3rem;
     & > img {
       width: 100%;
       height: 300px;
@@ -102,6 +103,7 @@
 }
 @media (min-width: 1200px) {
   .resource__details__container {
+    margin: 3rem 4rem;
     & > img {
       padding: 0 15rem;
       height: 400px;
