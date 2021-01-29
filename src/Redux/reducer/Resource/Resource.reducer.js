@@ -3,6 +3,7 @@ import {
   GET_RESOURCES,
   GET_CATEGORIES,
   GET_SPECIFIED_RESOURCE,
+  ADD_NEW_RESOURCE,
 } from "./Resource.type";
 import { REHYDRATE } from "../../../utils";
 
@@ -11,6 +12,7 @@ const INITIAL_STATE = {
   loading: false,
   categories: [],
   selected: [],
+  newResourceStatus: "",
 };
 
 const resourceReducer = (state = INITIAL_STATE, action) => {
@@ -34,11 +36,18 @@ const resourceReducer = (state = INITIAL_STATE, action) => {
         categories: action.payload,
         loading: false,
       };
-      
+
     case GET_SPECIFIED_RESOURCE:
       return {
         ...state,
         selected: action.payload,
+        loading: false,
+      };
+
+    case ADD_NEW_RESOURCE:
+      return {
+        ...state,
+        newResourceStatus: action.payload,
         loading: false,
       };
 

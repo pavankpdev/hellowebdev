@@ -18,6 +18,7 @@
     "algoliasearch": "^4.8.4",
     "classnames": "2.2.6",
     "firebase": "^8.2.4",
+    "moment": "^2.29.1",
     "node-sass": "4.14.1",
     "react": "17.0.1",
     "react-datetime": "3.0.4",
@@ -31,7 +32,8 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "uuid": "^8.3.2"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,3 +1,5 @@
+import moment from "moment";
+
 // utility function to dispatch loading actin to redux
 export const loading = () => {
   return {
@@ -15,3 +17,13 @@ export const requestSuccess = (type, payload) => {
 
 // Redux persist type
 export const REHYDRATE = "persist/REHYDRATE";
+
+// utility fuction to get current date or time
+export const getCurrentDateTime = (type) => {
+  const current = {
+    date: moment().format("YYYY-MM-DD"),
+    time: moment().format("HH:mm:ss"),
+  };
+
+  return current[type];
+};

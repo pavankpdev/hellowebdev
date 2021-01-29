@@ -3,7 +3,14 @@ import { AUTH_USER, SIGN_OUT_USER } from "./User.type";
 import { REHYDRATE } from "../../../utils";
 
 const INITIAL_STATE = {
-  user: { fullname: " ", username: "", image: "", url: "", contribution: [] },
+  user: {
+    id: 0,
+    fullname: " ",
+    username: "",
+    image: "",
+    url: "",
+    contribution: [],
+  },
   isAuth: false,
 };
 
@@ -20,6 +27,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         user: {
+          id: 0,
           fullname: " ",
           username: "",
           image: "",

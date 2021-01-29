@@ -29,9 +29,11 @@ const GitHubAuthBtn = () => {
         name,
         html_url,
         avatar_url,
+        id,
       } = githubAuth.additionalUserInfo.profile;
 
       const currentUser = {
+        id,
         username: login,
         fullname: name,
         profileUrl: html_url,

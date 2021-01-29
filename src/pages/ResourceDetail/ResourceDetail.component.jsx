@@ -32,7 +32,7 @@ const ResourceDetail = () => {
 
   useEffect(() => {
     const getDataAction = async () => {
-      const getResources = await dispatch(getSpecifiedResource(parseInt(id)));
+      const getResources = await dispatch(getSpecifiedResource(id));
       if (getResources.payload.length !== 0)
         return setResource(getResources.payload[0]);
 

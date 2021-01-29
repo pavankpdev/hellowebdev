@@ -9,6 +9,7 @@ import { loading, requestSuccess } from "../../../utils";
 
 // Action to authenticate user
 export const authUser = ({
+  id,
   username,
   fullname,
   profileUrl,
@@ -32,6 +33,7 @@ export const authUser = ({
       .add({ username, fullname, profileUrl, profilePic, contribution: [] });
     return dispatch(
       requestSuccess(AUTH_USER, {
+        id,
         username,
         fullname,
         profileUrl,

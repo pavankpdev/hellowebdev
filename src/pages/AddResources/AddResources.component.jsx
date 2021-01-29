@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import classnames from "classnames";
+import { useSelector, useDispatch } from "react-redux";
+import { toast, ToastContainer } from "react-toastify";
 
 // Styles
+import "react-toastify/dist/ReactToastify.css";
 import "./AddResources.styles.scss";
 
 // Components
@@ -9,23 +12,24 @@ import DarkInputFOrm from "../../components/DarkInputField/DarkInputField.compon
 import DarkSelectField from "../../components/DarkInputField/DarkSelectField.component";
 import ResourceType from "../../components/CategoryCapsule/CategoryCapsule.component";
 
+// Redux Action
+import { addNewResource } from "../../Redux/reducer/Resource/Resource.action";
+
 import { colourOptions, resources } from "../../utils/data";
 
 const AddResources = () => {
   const [resourceType, setResourceType] = useState("");
   const [newResourceData, setNewResourceData] = useState({
-    type: "",
     name: "",
     description: "",
     category: [],
     url: "",
-    contributor: {
-      name: "",
-      image: "",
-    },
     keywords: [],
     language: "",
   });
+
+  const dispatch = useDispatch();
+  const reduxState = useSelector(({ user }) => ({ user }));
 
   const handleCategories = (newValue) =>
     setNewResourceData({
@@ -51,11 +55,33 @@ const AddResources = () => {
       [e.target.name]: e.target.value,
     });
 
-  const submitResources = () =>
-    console.log({ type: resourceType, ...newResourceData });
-  console.log(resourceType);
+  const submitResources = async () => {
+    const newResource = await dispatch(
+      addNewResource({
+        resourceType,
+        contributor: {
+          name: reduxState.user.user.fullname,
+          image: reduxState.user.user.profilePic,
+          id: reduxState.user.user.id,
+        },
+        ...newResourceData,
+      })
+    );
+
+    return toast.success(newResource.payload, {
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+
   return (
     <>
+      <ToastContainer />
       <div className="add__new__container rounded">
         <h4>Add New Resource</h4>
         <div className="resource__form ">

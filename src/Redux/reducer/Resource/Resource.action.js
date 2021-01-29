@@ -1,15 +1,19 @@
+// Library
+import { v4 as uuidv4 } from "uuid";
+
 // Types
 import {
   GET_RESOURCES,
   GET_CATEGORIES,
   GET_SPECIFIED_RESOURCE,
+  ADD_NEW_RESOURCE,
 } from "./Resource.type";
 
 // Configs
 import { firestore } from "../../../configs/firebase.config";
 
 // Utilities
-import { loading, requestSuccess } from "../../../utils";
+import { loading, requestSuccess, getCurrentDateTime } from "../../../utils";
 
 // Action to get all the resouces from firestore
 export const getResources = () => async (dispatch) => {
@@ -78,5 +82,22 @@ export const getSpecifiedResource = (id) => async (dispatch) => {
     return dispatch(requestSuccess(GET_SPECIFIED_RESOURCE, resource));
   } catch (error) {
     console.log(error);
+  }
+};
+
+// Action to add new resource
+export const addNewResource = (newResourceData) => async (dispatch) => {
+  try {
+    dispatch(loading());
+    firestore.collection("resources").add({
+      uploadDate: getCurrentDateTime("date"),
+      id: uuidv4(),
+      ...newResourceData,
+    });
+    return dispatch(
+      requestSuccess(ADD_NEW_RESOURCE, "Resource succesfully added")
+    );
+  } catch (error) {
+    return console.log(error);
   }
 };
