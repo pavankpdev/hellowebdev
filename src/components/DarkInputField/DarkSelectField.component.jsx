@@ -14,6 +14,7 @@ const DarkSelectField = ({
   handleChange,
   options,
   creatable,
+  ref,
 }) => {
   const [customReactSelectStyle, setCustomReactSelectStyle] = useState(
     darkThemeReactSelect
@@ -36,6 +37,7 @@ const DarkSelectField = ({
           options={options}
           placeholder={placeholder}
           isMulti
+          ref={ref}
         />
         <small className={classnames("danger", { hide: !error })}>
           {error}

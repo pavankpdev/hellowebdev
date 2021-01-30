@@ -28,16 +28,14 @@ export const authUser = ({
     const currentUser = userList.filter((user) => user.username === username);
     return dispatch(requestSuccess(AUTH_USER, currentUser[0]));
   } else {
-    firestore
-      .collection("users")
-      .add({
-        id,
-        username,
-        fullname,
-        profileUrl,
-        profilePic,
-        contribution: [],
-      });
+    firestore.collection("users").add({
+      id,
+      username,
+      fullname,
+      profileUrl,
+      profilePic,
+      contribution: [],
+    });
     return dispatch(
       requestSuccess(AUTH_USER, {
         id,

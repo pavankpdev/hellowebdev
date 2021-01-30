@@ -4,6 +4,11 @@ import {
   GET_CATEGORIES,
   GET_SPECIFIED_RESOURCE,
   ADD_NEW_RESOURCE,
+  ADD_NEW_CATEGORY,
+  ADD_NEW_LANGUAGE,
+  ADD_NEW_KEYWORDS,
+  GET_KEYWORDS,
+  GET_LANGUAGE,
 } from "./Resource.type";
 import { REHYDRATE } from "../../../utils";
 
@@ -12,6 +17,8 @@ const INITIAL_STATE = {
   loading: false,
   categories: [],
   selected: [],
+  language: [],
+  keywords: [],
   newResourceStatus: "",
 };
 
@@ -37,6 +44,20 @@ const resourceReducer = (state = INITIAL_STATE, action) => {
         loading: false,
       };
 
+    case GET_KEYWORDS:
+      return {
+        ...state,
+        keywords: action.payload,
+        loading: false,
+      };
+
+    case GET_LANGUAGE:
+      return {
+        ...state,
+        language: action.payload,
+        loading: false,
+      };
+
     case GET_SPECIFIED_RESOURCE:
       return {
         ...state,
@@ -48,6 +69,27 @@ const resourceReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         newResourceStatus: action.payload,
+        loading: false,
+      };
+
+    case ADD_NEW_CATEGORY:
+      return {
+        ...state,
+        categories: [...state.categories, ...action.payload.category],
+        loading: false,
+      };
+
+    case ADD_NEW_LANGUAGE:
+      return {
+        ...state,
+        language: [...state.language, ...action.payload.language],
+        loading: false,
+      };
+
+    case ADD_NEW_KEYWORDS:
+      return {
+        ...state,
+        keywords: [...state.keywords, ...action.payload.keywords],
         loading: false,
       };
 

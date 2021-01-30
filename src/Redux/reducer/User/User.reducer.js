@@ -1,5 +1,9 @@
 // Action Types
-import { AUTH_USER, SIGN_OUT_USER } from "./User.type";
+import {
+  AUTH_USER,
+  SIGN_OUT_USER,
+  UPDATE_RESOURCE_CONTRIBUTION,
+} from "./User.type";
 import { REHYDRATE } from "../../../utils";
 
 const INITIAL_STATE = {
@@ -20,6 +24,16 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         user: action.payload,
+        isAuth: true,
+      };
+
+    case UPDATE_RESOURCE_CONTRIBUTION:
+      return {
+        ...state,
+        user: {
+          ...state.user,
+          contribution: [...state.user.contribution, action.payload],
+        },
         isAuth: true,
       };
 

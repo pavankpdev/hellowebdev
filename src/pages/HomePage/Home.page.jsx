@@ -33,7 +33,7 @@ const Home = () => {
   });
   const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState(["react"]);
-  
+
   const [searchInput, setSearchInput] = useState("");
 
   // Redux state
@@ -53,16 +53,17 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    toast.warn(location.state, {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      onClose: () => (location.state = ""),
-    });
+    if (location.state)
+      toast.warn(location.state, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        onClose: () => (location.state = ""),
+      });
   }, [location.state]);
 
   // Sort the list based on search string

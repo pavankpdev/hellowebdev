@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 import { useSelector, useDispatch } from "react-redux";
 import { toast, ToastContainer } from "react-toastify";
@@ -13,12 +13,24 @@ import DarkSelectField from "../../components/DarkInputField/DarkSelectField.com
 import ResourceType from "../../components/CategoryCapsule/CategoryCapsule.component";
 
 // Redux Action
-import { addNewResource } from "../../Redux/reducer/Resource/Resource.action";
-
-import { colourOptions, resources } from "../../utils/data";
+import {
+  addNewResource,
+  getCategories,
+  getLanguages,
+  getKeywords,
+} from "../../Redux/reducer/Resource/Resource.action";
 
 const AddResources = () => {
+  const [ResourceTypeList, setResourceTypeList] = useState([
+    { id: "libraries", value: "Usefull Libraries" },
+    { id: "snippets", value: "Code Snippets" },
+    { id: "courses", value: "Free Courses" },
+    { id: "articles", value: "Amazing Articles" },
+  ]);
   const [resourceType, setResourceType] = useState("");
+  const [categories, setCategories] = useState([]);
+  const [languages, setLanguages] = useState([]);
+  const [keywords, setKeywords] = useState([]);
   const [newResourceData, setNewResourceData] = useState({
     name: "",
     description: "",
@@ -29,7 +41,22 @@ const AddResources = () => {
   });
 
   const dispatch = useDispatch();
-  const reduxState = useSelector(({ user }) => ({ user }));
+  const reduxState = useSelector(({ user, resources }) => ({
+    user,
+    resources,
+  }));
+
+  useEffect(() => {
+    const getCategoriesListAction = async () => {
+      const categoriesList = await dispatch(getCategories());
+      const keywordsList = await dispatch(getKeywords());
+      const languagesList = await dispatch(getLanguages());
+      setCategories(categoriesList.payload);
+      setKeywords(keywordsList.payload);
+      setLanguages(languagesList.payload);
+    };
+    getCategoriesListAction();
+  }, []);
 
   const handleCategories = (newValue) =>
     setNewResourceData({
@@ -70,12 +97,10 @@ const AddResources = () => {
     );
     setResourceType("");
     setNewResourceData({
+      ...newResourceData,
       name: "",
       description: "",
-      category: [],
       url: "",
-      keywords: [],
-      language: "",
     });
 
     return toast.success(newResource.payload, {
@@ -97,7 +122,7 @@ const AddResources = () => {
         <div className="resource__form ">
           <label>Resource Type</label>
           <div className="resource__type">
-            {resources.map((resource) => (
+            {ResourceTypeList.map((resource) => (
               <ResourceType
                 customClass="resource__capsule"
                 selected={resourceType}
@@ -112,7 +137,7 @@ const AddResources = () => {
           <DarkSelectField
             label="Language"
             handleChange={handleLanguage}
-            options={colourOptions}
+            options={languages}
             placeholder="Resource Language"
             creatable
           />
@@ -184,7 +209,7 @@ const AddResources = () => {
           <DarkSelectField
             label="Category"
             handleChange={handleCategories}
-            options={colourOptions}
+            options={categories}
             placeholder="Select a category"
             creatable
           />
@@ -193,13 +218,17 @@ const AddResources = () => {
           <DarkSelectField
             label="Keywords"
             handleChange={handleKeywords}
-            options={colourOptions}
+            options={keywords}
             placeholder="Add some valid keywords"
             creatable
           />
         </div>
         <button className="btn btn-sm btn-primary" onClick={submitResources}>
-          Submit
+          {reduxState.resources.loading ? (
+            <i className="fas fa-spinner fa-pulse fa-lg white" />
+          ) : (
+            "Submit"
+          )}
         </button>
       </div>
     </>
