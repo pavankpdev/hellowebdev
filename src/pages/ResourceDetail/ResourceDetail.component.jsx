@@ -42,7 +42,6 @@ const ResourceDetail = () => {
     };
     getDataAction();
   }, []);
-
   return (
     <>
       <div className={classnames({ hide: !reduxState.resources.loading })}>

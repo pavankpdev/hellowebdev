@@ -111,7 +111,7 @@ export const getSpecifiedResource = (id) => async (dispatch) => {
 export const addNewResource = (newResourceData) => async (dispatch) => {
   try {
     dispatch(loading());
-    const currentResourceID = Date.now();
+    const currentResourceID = `${Date.now()}`;
     await addNewDocumentToFirebase("resources", {
       uploadDate: getCurrentDateTime("date"),
       id: currentResourceID,
