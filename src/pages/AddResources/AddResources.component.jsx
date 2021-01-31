@@ -11,6 +11,7 @@ import "./AddResources.styles.scss";
 import DarkInputFOrm from "../../components/DarkInputField/DarkInputField.component";
 import DarkSelectField from "../../components/DarkInputField/DarkSelectField.component";
 import ResourceType from "../../components/CategoryCapsule/CategoryCapsule.component";
+import DarkTextArea from "../../components/DarkInputField/DarkTextArea.component";
 
 // Redux Action
 import {
@@ -195,7 +196,8 @@ const AddResources = () => {
           />
         </div>
         <div className="resource__form">
-          <DarkInputFOrm
+          <label style={{marginBottom:"1rem"}}>Select Resource Type</label>
+          <DarkTextArea
             label="Description"
             id="resource"
             type="text"
@@ -203,7 +205,7 @@ const AddResources = () => {
             name="description"
             value={newResourceData.description}
             onChange={handleInput}
-          />
+          ></DarkTextArea>
         </div>
         <div className="resource__form">
           <DarkSelectField
