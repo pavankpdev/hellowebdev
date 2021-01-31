@@ -27,7 +27,7 @@ const AddResources = () => {
     { id: "courses", value: "Free Courses" },
     { id: "articles", value: "Amazing Articles" },
   ]);
-  const [resourceType, setResourceType] = useState("");
+  const [resourceType, setResourceType] = useState("libraries");
   const [categories, setCategories] = useState([]);
   const [languages, setLanguages] = useState([]);
   const [keywords, setKeywords] = useState([]);
@@ -120,7 +120,7 @@ const AddResources = () => {
       <div className="add__new__container rounded">
         <h4>Add New Resource</h4>
         <div className="resource__form ">
-          <label>Resource Type</label>
+          <label>Select Resource Type</label>
           <div className="resource__type">
             {ResourceTypeList.map((resource) => (
               <ResourceType

@@ -30,6 +30,7 @@
         & > img {
           width: 100px;
           height: 100px;
+          border: 2px solid $default;
         }
         & > h3 {
           font-weight: $font-weight-light;

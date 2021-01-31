@@ -15,8 +15,6 @@ import {
 } from "./Resource.type";
 import { UPDATE_RESOURCE_CONTRIBUTION } from "../User/User.type";
 
-// Configs
-import { firestore, firebase } from "../../../configs/firebase.config";
 
 // Utilities
 import { loading, requestSuccess, getCurrentDateTime } from "../../../utils";
