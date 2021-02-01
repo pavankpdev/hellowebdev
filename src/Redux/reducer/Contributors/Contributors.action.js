@@ -7,6 +7,7 @@ import {
 // Utilities
 import { requestSuccess, loading } from "../../../utils";
 import { getConditionDataFromFirebase } from "../../../utils/firebase/firebase.util";
+import { requestfailed } from "../Error/Error.action";
 
 // Action to get all resource contributors
 export const getResourceContributors = () => async (dispatch) => {
@@ -24,7 +25,7 @@ export const getResourceContributors = () => async (dispatch) => {
       requestSuccess(GET_RESOURCE_CONTRIBUTORS, { resourceContributors })
     );
   } catch (error) {
-    console.log(error);
+    return dispatch(requestfailed(error));
   }
 };
 
@@ -43,6 +44,6 @@ export const getProjectContributors = () => async (dispatch) => {
       requestSuccess(GET_PROJECT_CONTRIBUTORS, { projectContributors })
     );
   } catch (error) {
-    console.log(error);
+    return dispatch(requestfailed(error));
   }
 };

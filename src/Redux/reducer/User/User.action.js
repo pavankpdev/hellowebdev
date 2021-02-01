@@ -2,31 +2,35 @@
 import { AUTH_USER, SIGN_OUT_USER } from "./User.type";
 
 // Utilities
-import {  requestSuccess } from "../../../utils";
+import { requestSuccess } from "../../../utils";
 import {
   getConditionDataFromFirebase,
   addNewDocumentToFirebase,
   getDocumentID,
 } from "../../../utils/firebase/firebase.util";
+import { requestfailed } from "../Error/Error.action";
 
 // Action to authenticate user
 export const authUser = (userData) => async (dispatch) => {
+  try {
+    const { username } = userData;
 
-  const { username } = userData;
-  
-  // check if the user already exist in database
-  const doesUserExist = await getDocumentID("users", {
-    username,
-  });
-
-  if (doesUserExist) {
-    const currentUser = await getConditionDataFromFirebase("users", {
+    // check if the user already exist in database
+    const doesUserExist = await getDocumentID("users", {
       username,
     });
-    return dispatch(requestSuccess(AUTH_USER, currentUser[0]));
-  } else {
-    await addNewDocumentToFirebase("users", userData);
-    return dispatch(requestSuccess(AUTH_USER, userData));
+
+    if (doesUserExist) {
+      const currentUser = await getConditionDataFromFirebase("users", {
+        username,
+      });
+      return dispatch(requestSuccess(AUTH_USER, currentUser[0]));
+    } else {
+      await addNewDocumentToFirebase("users", userData);
+      return dispatch(requestSuccess(AUTH_USER, userData));
+    }
+  } catch (error) {
+    return dispatch(requestfailed(error));
   }
 };
 

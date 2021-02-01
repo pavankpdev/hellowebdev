@@ -88,8 +88,9 @@ const AddResources = () => {
 
   const submitResources = async () => {
     const isEmpty = Object.keys(newResourceData).filter(
-      (obj) => newResourceData[obj] === "" || []
+      (obj) => newResourceData[obj] === ""
     );
+
     if (isEmpty.length !== 0) {
       return setError({ server: "", client: isEmpty });
     }

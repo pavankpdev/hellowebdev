@@ -15,16 +15,25 @@ import {
 } from "./Resource.type";
 import { UPDATE_RESOURCE_CONTRIBUTION } from "../User/User.type";
 
-
 // Utilities
-import { loading, requestSuccess, getCurrentDateTime } from "../../../utils";
+import { loading, requestSuccess } from "../../../utils";
 import {
   getConditionDataFromFirebase,
-  addNewDocumentToFirebase,
   getDataFromFirebase,
-  getDocumentID,
-  updateArrayOfObject,
 } from "../../../utils/firebase/firebase.util";
+
+// Worker Functions
+import {
+  addNewResourceData,
+  updateContributorData,
+  updateCategories,
+  updateKeywords,
+  updateUserContributionData,
+  updateLanguage,
+} from "./Resource.worker";
+
+// Error handling reducer
+import { requestfailed } from "../Error/Error.action";
 
 // Action to get all the resouces from firestore
 export const getResources = () => async (dispatch) => {
@@ -49,7 +58,7 @@ export const getResources = () => async (dispatch) => {
       })
     );
   } catch (error) {
-    console.log(error);
+    return dispatch(requestfailed(error));
   }
 };
 
@@ -62,7 +71,7 @@ export const getCategories = () => async (dispatch) => {
     categories = uniqBy(categories, "id");
     return dispatch(requestSuccess(GET_CATEGORIES, categories));
   } catch (error) {
-    console.log(error);
+    return dispatch(requestfailed(error));
   }
 };
 
@@ -75,7 +84,7 @@ export const getKeywords = () => async (dispatch) => {
     keywords = uniqBy(keywords, "id");
     return dispatch(requestSuccess(GET_KEYWORDS, keywords));
   } catch (error) {
-    console.log(error);
+    return dispatch(requestfailed(error));
   }
 };
 
@@ -88,7 +97,7 @@ export const getLanguages = () => async (dispatch) => {
     languages = uniqBy(languages, "id");
     return dispatch(requestSuccess(GET_LANGUAGE, languages));
   } catch (error) {
-    console.log(error);
+    return dispatch(requestfailed(error));
   }
 };
 
@@ -101,7 +110,7 @@ export const getSpecifiedResource = (id) => async (dispatch) => {
 
     return dispatch(requestSuccess(GET_SPECIFIED_RESOURCE, resource));
   } catch (error) {
-    console.log(error);
+    return dispatch(requestfailed(error));
   }
 };
 
@@ -109,63 +118,20 @@ export const getSpecifiedResource = (id) => async (dispatch) => {
 export const addNewResource = (newResourceData) => async (dispatch) => {
   try {
     dispatch(loading());
+
     const currentResourceID = `${Date.now()}`;
-    await addNewDocumentToFirebase("resources", {
-      uploadDate: getCurrentDateTime("date"),
-      id: currentResourceID,
-      ...newResourceData,
-    });
 
-    let ContributorExist = await getConditionDataFromFirebase("contributors", {
-      id: newResourceData.contributor.id,
-    });
+    await addNewResourceData(newResourceData, currentResourceID);
 
-    if (ContributorExist.length === 0) {
-      await addNewDocumentToFirebase("contributors", {
-        username: newResourceData.contributor.username,
-        image: newResourceData.contributor.image,
-        name: newResourceData.contributor.name,
-        id: newResourceData.contributor.id,
-        contributorType: "resource",
-      });
-    }
+    await updateContributorData(newResourceData);
 
-    const documentIdofUser = await getDocumentID("users", {
-      id: newResourceData.contributor.id,
-    });
+    await updateUserContributionData(newResourceData, currentResourceID);
 
-    updateArrayOfObject("users", documentIdofUser, "contribution", {
-      resourceType: newResourceData.resourceType,
-      resourceId: currentResourceID,
-      name: newResourceData.name,
-      description: newResourceData.description,
-    });
+    await updateCategories(newResourceData);
 
-    newResourceData.category.forEach(
-      async (cat) =>
-        await addNewDocumentToFirebase("categories", {
-          id: cat.toLowerCase(),
-          label: cat.toLowerCase(),
-          value: cat,
-        })
-    );
-    newResourceData.keywords.forEach(
-      async (keys) =>
-        await addNewDocumentToFirebase("keywords", {
-          id: keys.toLowerCase(),
-          label: keys.toLowerCase(),
-          value: keys,
-        })
-    );
+    await updateKeywords(newResourceData);
 
-    newResourceData.language.forEach(
-      async (lang) =>
-        await addNewDocumentToFirebase("languages", {
-          id: lang.toLowerCase(),
-          label: lang.toLowerCase(),
-          value: lang,
-        })
-    );
+    await updateLanguage(newResourceData);
 
     dispatch(
       requestSuccess(ADD_NEW_CATEGORY, { category: newResourceData.category })
@@ -196,6 +162,6 @@ export const addNewResource = (newResourceData) => async (dispatch) => {
       requestSuccess(ADD_NEW_RESOURCE, "Resource succesfully added")
     );
   } catch (error) {
-    return console.log(error);
+    return dispatch(requestfailed(error));
   }
 };
