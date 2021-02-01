@@ -51,34 +51,48 @@ export const updateUserContributionData = async (
 };
 
 export const updateCategories = async (newResourceData) => {
-  newResourceData.category.forEach(
-    async (cat) =>
-      await addNewDocumentToFirebase("categories", {
+  newResourceData.category.forEach(async (cat) => {
+    let CategoryExist = await getConditionDataFromFirebase("categories", {
+      id: cat.toLowerCase(),
+    });
+
+    if (CategoryExist.length === 0)
+      return await addNewDocumentToFirebase("categories", {
         id: cat.toLowerCase(),
         label: cat.toLowerCase(),
         value: cat,
-      })
-  );
+      });
+
+    return;
+  });
 };
 
 export const updateKeywords = async (newResourceData) => {
-  newResourceData.keywords.forEach(
-    async (keys) =>
-      await addNewDocumentToFirebase("keywords", {
+  newResourceData.keywords.forEach(async (keys) => {
+    let KeywordsExist = await getConditionDataFromFirebase("keywords", {
+      id: keys.toLowerCase(),
+    });
+    if (KeywordsExist.length === 0)
+      return await addNewDocumentToFirebase("keywords", {
         id: keys.toLowerCase(),
         label: keys.toLowerCase(),
         value: keys,
-      })
-  );
+      });
+    return;
+  });
 };
 
 export const updateLanguage = async (newResourceData) => {
-  newResourceData.language.forEach(
-    async (lang) =>
-      await addNewDocumentToFirebase("languages", {
+  newResourceData.language.forEach(async (lang) => {
+    let LanguageExist = await getConditionDataFromFirebase("languages", {
+      id: lang.toLowerCase(),
+    });
+    if (LanguageExist.length === 0)
+      return await addNewDocumentToFirebase("languages", {
         id: lang.toLowerCase(),
         label: lang.toLowerCase(),
         value: lang,
-      })
-  );
+      });
+    return;
+  });
 };
