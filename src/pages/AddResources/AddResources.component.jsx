@@ -40,6 +40,7 @@ const AddResources = () => {
     keywords: [],
     language: "",
   });
+  const [error, setError] = useState({ server: "", client: "" });
 
   const dispatch = useDispatch();
   const reduxState = useSelector(({ user, resources }) => ({
@@ -83,7 +84,16 @@ const AddResources = () => {
       [e.target.name]: e.target.value,
     });
 
+  const clearError = () => setError({ server: "", client: "" });
+
   const submitResources = async () => {
+    const isEmpty = Object.keys(newResourceData).filter(
+      (obj) => newResourceData[obj] === "" || []
+    );
+    if (isEmpty.length !== 0) {
+      return setError({ server: "", client: isEmpty });
+    }
+
     const newResource = await dispatch(
       addNewResource({
         resourceType,
@@ -141,6 +151,9 @@ const AddResources = () => {
             options={languages}
             placeholder="Resource Language"
             creatable
+            onFocus={clearError}
+            error={error.client.includes("language")}
+            errorMsg="Please select a valid language."
           />
         </div>
         <div className="resource__form">
@@ -152,51 +165,45 @@ const AddResources = () => {
             name="name"
             value={newResourceData.name}
             onChange={handleInput}
+            onFocus={clearError}
+            error={error.client.includes("name")}
+            errorMsg="Please add a resource name."
           />
         </div>
         <div className="resource__form">
           <DarkInputFOrm
             label="Resource Official Website / url"
             id="resource"
-            type="text"
+            type="url"
             placeholder="Eg: https://www.npmjs.com/package/mongoose"
             name="url"
             value={newResourceData.url}
             onChange={handleInput}
-          />
-        </div>
-        <div
-          className={classnames("resource__form", {
-            hide: !resourceType.includes("courses"),
-          })}
-        >
-          <DarkInputFOrm
-            label="Resource thumbnail / image (url)"
-            id="resource"
-            type="url"
-            placeholder="Eg: https://example.com/Blue.png"
-            name="thumbnail"
-            value={newResourceData.thumbnail}
-            onChange={handleInput}
-          />
-        </div>
-        <div
-          className={classnames("resource__form", {
-            hide: !resourceType.includes("articles"),
-          })}
-        >
-          <DarkInputFOrm
-            label="Resource thumbnail / image (url)"
-            id="resource"
-            type="url"
-            placeholder="Eg: https://example.com/Blue.png"
-            name="thumbnail"
-            value={newResourceData.thumbnail}
-            onChange={handleInput}
+            onFocus={clearError}
+            error={error.client.includes("url")}
+            errorMsg="Please add a resource url."
           />
         </div>
         <div className="resource__form">
-          <label style={{marginBottom:"1rem"}}>Select Resource Type</label>
+          <DarkInputFOrm
+            label="Resource thumbnail / image (url)"
+            id="resource"
+            type="url"
+            placeholder="Eg: https://example.com/Blue.png"
+            name="thumbnail"
+            value={newResourceData.thumbnail}
+            onChange={handleInput}
+            onFocus={clearError}
+            error={error.client.includes("thumbnail")}
+            errorMsg="Please add a resource image url."
+            disabled={
+              !resourceType.includes("courses") &&
+              !resourceType.includes("articles")
+            }
+          />
+        </div>
+        <div className="resource__form">
+          <label style={{ marginBottom: "1rem" }}>Select Resource Type</label>
           <DarkTextArea
             label="Description"
             id="resource"
@@ -205,6 +212,9 @@ const AddResources = () => {
             name="description"
             value={newResourceData.description}
             onChange={handleInput}
+            onFocus={clearError}
+            error={error.client.includes("description")}
+            errorMsg="Please add a resource description."
           ></DarkTextArea>
         </div>
         <div className="resource__form">
@@ -214,6 +224,9 @@ const AddResources = () => {
             options={categories}
             placeholder="Select a category"
             creatable
+            onFocus={clearError}
+            error={error.client.includes("category")}
+            errorMsg="Please select a resource category."
           />
         </div>
         <div className="resource__form">
@@ -223,6 +236,9 @@ const AddResources = () => {
             options={keywords}
             placeholder="Add some valid keywords"
             creatable
+            onFocus={clearError}
+            error={error.client.includes("keywords")}
+            errorMsg="Please add some valid keywords."
           />
         </div>
         <button className="btn btn-sm btn-primary" onClick={submitResources}>

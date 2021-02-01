@@ -6,11 +6,18 @@
   & > .input-error {
     border: 2px solid $danger !important;
   }
-  & > input[type="text"] {
+  & > input[type="text"],
+  input[type="url"] {
+    margin: 0.5rem 0;
     background-color: $app-bg-color;
     border: 2px solid #4136f1;
     border-radius: 4px;
     color: $default;
+    width: 100%;
+    padding: 1rem;
+    & > :focus {
+      outline: 0;
+    }
   }
   & > textarea {
     background-color: $app-bg-color;

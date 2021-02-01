@@ -63,3 +63,9 @@ input {
 .pointer {
   cursor: pointer;
 }
+
+.disable-input {
+  cursor: not-allowed;
+  border: 2px solid #06041a !important;
+  background-color: #06041a !important;
+}

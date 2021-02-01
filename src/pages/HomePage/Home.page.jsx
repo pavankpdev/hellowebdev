@@ -32,7 +32,7 @@ const Home = () => {
     articles: [],
   });
   const [categories, setCategories] = useState([]);
-  const [filter, setFilter] = useState(["react"]);
+  const [filter, setFilter] = useState(["reactjs"]);
 
   const [searchInput, setSearchInput] = useState("");
 
