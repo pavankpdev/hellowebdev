@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 import { toast, ToastContainer } from "react-toastify";
+import intersection from "lodash/intersection";
 
 // styles
 import "react-toastify/dist/ReactToastify.css";
@@ -30,7 +31,7 @@ const Home = () => {
     articles: [],
   });
   const [categories, setCategories] = useState([]);
-  const [filter, setFilter] = useState(["reactjs"]);
+  const [selectedCategory, setSelectedCategory] = useState("reactjs");
   const [searchInput, setSearchInput] = useState("");
 
   // Redux state
@@ -93,12 +94,26 @@ const Home = () => {
     });
   }, [searchInput]);
 
+  useEffect(() => {
+    setHomePageData({
+      libraries: reduxState.resources.resources.libraries.filter(
+        ({ category }) => category.includes(selectedCategory)
+      ),
+      codeSnippets: reduxState.resources.resources.codeSnippets.filter(
+        ({ category }) => category.includes(selectedCategory)
+      ),
+      courses: reduxState.resources.resources.courses.filter(({ category }) =>
+        category.includes(selectedCategory)
+      ),
+      articles: reduxState.resources.resources.articles.filter(({ category }) =>
+        category.includes(selectedCategory)
+      ),
+    });
+  }, [selectedCategory]);
+
   // Sort the list based on search string
   const SelectCategory = (id) => {
-    if (filter.includes(id) && filter.length > 1)
-      return setFilter(filter.filter((category) => category !== id));
-
-    if (!filter.includes(id)) return setFilter([...filter, id]);
+    if (!selectedCategory.includes(id)) return setSelectedCategory(id);
 
     return;
   };
@@ -169,7 +184,7 @@ const Home = () => {
             {categories.map((category) => (
               <CategoryList
                 key={Math.random}
-                selected={filter}
+                selected={selectedCategory}
                 {...category}
                 SelectCategory={SelectCategory}
                 key={category.id}
@@ -193,7 +208,10 @@ const Home = () => {
             </Collapsible>
           </div>
           <div className="code__snippet">
-            <Collapsible title="Code Snippets" length={homePageData.codeSnippets.length}>
+            <Collapsible
+              title="Code Snippets"
+              length={homePageData.codeSnippets.length}
+            >
               <div className="home__codesnippet__card__container">
                 {homePageData.codeSnippets.map((snippet) => (
                   <NonImageCard
@@ -206,7 +224,10 @@ const Home = () => {
             </Collapsible>
           </div>
           <div className="free__courses">
-            <Collapsible title="Free Courses" length={homePageData.courses.length}>
+            <Collapsible
+              title="Free Courses"
+              length={homePageData.courses.length}
+            >
               <div className="home__free__courses__card__container">
                 {homePageData.courses.map((course) => (
                   <ImageCard
@@ -219,7 +240,10 @@ const Home = () => {
             </Collapsible>
           </div>
           <div className="amazing__articles">
-            <Collapsible title="Amazing articles" length={homePageData.articles.length}>
+            <Collapsible
+              title="Amazing articles"
+              length={homePageData.articles.length}
+            >
               <div className="home__amazing__articles__card__container">
                 {homePageData.articles.map((article) => (
                   <ImageCard
