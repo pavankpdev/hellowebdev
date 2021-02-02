@@ -27,27 +27,27 @@ const ResourceDetails = React.lazy(() =>
 
 function App() {
   return (
-      <div className="app">
-        <Navbar />
-        <Switch>
-          <Suspense fallback={<Spinner />}>
-            <Route exact path="/" component={HomePage} />
-            <PrivateRoute exact path="/new-resource" component={AddResourses} />
-            <Route
-              exact
-              path="/project-contribution"
-              component={ProjectContribution}
-            />
-            <Route
-              exact
-              path="/resource-contribution"
-              component={ResourceContribution}
-            />
-            <PrivateRoute exact path="/profile" component={Profile} />
-            <Route exact path="/resource/:id" component={ResourceDetails} />
-          </Suspense>
-        </Switch>
-      </div>
+    <div className="app">
+      <Navbar />
+      <Switch>
+        <Suspense fallback={<Spinner />}>
+          <Route exact path="/" component={HomePage} />
+          <PrivateRoute exact path="/new-resource" component={AddResourses} />
+          <Route
+            exact
+            path="/project-contribution"
+            component={ProjectContribution}
+          />
+          <Route
+            exact
+            path="/resource-contribution"
+            component={ResourceContribution}
+          />
+          <PrivateRoute exact path="/profile" component={Profile} />
+          <Route exact path="/resource/:id" component={ResourceDetails} />
+        </Suspense>
+      </Switch>
+    </div>
   );
 }
 

@@ -31,9 +31,9 @@ const Home = () => {
     articles: [],
   });
   const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState("reactjs");
+  const [selectedCategory, setSelectedCategory] = useState("");
   const [searchInput, setSearchInput] = useState("");
-
+  const [filter, setFilter] = useState("all");
   // Redux state
   const reduxState = useSelector(({ resources }) => ({ resources }));
 
@@ -177,7 +177,7 @@ const Home = () => {
         })}
       >
         <div className="home__sidebar__container">
-          <SideBar />
+          <SideBar filter={filter} setFilter={setFilter} />
         </div>
         <div className="home__resources__container">
           <div className="category__container">
@@ -191,10 +191,15 @@ const Home = () => {
               />
             ))}
           </div>
-          <div className="usefull__libraries">
+          <div
+            className={classnames("usefull__libraries", {
+              hide: !filter.includes("all") && !filter.includes("libraries"),
+            })}
+          >
             <Collapsible
               title="Usefull Libraries"
               length={homePageData.libraries.length}
+              filter={filter.includes("libraries")}
             >
               <div className="home__library__card__container">
                 {homePageData.libraries.map((library) => (
@@ -207,10 +212,15 @@ const Home = () => {
               </div>
             </Collapsible>
           </div>
-          <div className="code__snippet">
+          <div
+            className={classnames("code__snippet", {
+              hide: !filter.includes("all") && !filter.includes("code"),
+            })}
+          >
             <Collapsible
               title="Code Snippets"
               length={homePageData.codeSnippets.length}
+              filter={filter.includes("code")}
             >
               <div className="home__codesnippet__card__container">
                 {homePageData.codeSnippets.map((snippet) => (
@@ -223,10 +233,15 @@ const Home = () => {
               </div>
             </Collapsible>
           </div>
-          <div className="free__courses">
+          <div
+            className={classnames("free__courses", {
+              hide: !filter.includes("all") && !filter.includes("courses"),
+            })}
+          >
             <Collapsible
               title="Free Courses"
               length={homePageData.courses.length}
+              filter={filter.includes("courses")}
             >
               <div className="home__free__courses__card__container">
                 {homePageData.courses.map((course) => (
@@ -239,10 +254,15 @@ const Home = () => {
               </div>
             </Collapsible>
           </div>
-          <div className="amazing__articles">
+          <div
+            className={classnames("amazing__articles", {
+              hide: !filter.includes("all") && !filter.includes("articles"),
+            })}
+          >
             <Collapsible
               title="Amazing articles"
               length={homePageData.articles.length}
+              filter={filter.includes("articles")}
             >
               <div className="home__amazing__articles__card__container">
                 {homePageData.articles.map((article) => (

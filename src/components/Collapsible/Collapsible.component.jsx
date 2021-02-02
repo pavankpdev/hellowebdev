@@ -3,7 +3,7 @@ import classnames from "classnames";
 
 import "./Collapsible.styles.scss";
 
-const Collapsible = ({ title, children, length }) => {
+const Collapsible = ({ title, children, length, filter }) => {
   const [toggle, setTogggle] = useState(false);
   return (
     <>
