@@ -112,9 +112,9 @@ const AddResources = () => {
       name: "",
       description: "",
       url: "",
-      thumbnail: "",
     });
 
+  
     return toast.success(newResource.payload, {
       position: "top-center",
       autoClose: 2000,
