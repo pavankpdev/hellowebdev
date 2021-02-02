@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import algoliasearch from "algoliasearch/lite";
-import { InstantSearch, SearchBox, Hits } from "react-instantsearch-dom";
 import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
@@ -33,7 +31,6 @@ const Home = () => {
   });
   const [categories, setCategories] = useState([]);
   const [filter, setFilter] = useState(["reactjs"]);
-
   const [searchInput, setSearchInput] = useState("");
 
   // Redux state
@@ -66,6 +63,36 @@ const Home = () => {
       });
   }, [location.state]);
 
+  useEffect(() => {
+    // resources.resources
+    setHomePageData({
+      libraries: reduxState.resources.resources.libraries.filter(
+        ({ name, keywords, category }) =>
+          name.includes(searchInput) ||
+          keywords.includes(searchInput) ||
+          category.includes(searchInput)
+      ),
+      codeSnippets: reduxState.resources.resources.codeSnippets.filter(
+        ({ name, keywords, category }) =>
+          name.includes(searchInput) ||
+          keywords.includes(searchInput) ||
+          category.includes(searchInput)
+      ),
+      courses: reduxState.resources.resources.courses.filter(
+        ({ name, keywords, category }) =>
+          name.includes(searchInput) ||
+          keywords.includes(searchInput) ||
+          category.includes(searchInput)
+      ),
+      articles: reduxState.resources.resources.articles.filter(
+        ({ name, keywords, category }) =>
+          name.includes(searchInput) ||
+          keywords.includes(searchInput) ||
+          category.includes(searchInput)
+      ),
+    });
+  }, [searchInput]);
+
   // Sort the list based on search string
   const SelectCategory = (id) => {
     if (filter.includes(id) && filter.length > 1)
@@ -76,10 +103,8 @@ const Home = () => {
     return;
   };
 
-  const searchClient = algoliasearch(
-    "N8NI9VRBU1",
-    "fba347501ce93182f89978a9f95e17d4"
-  );
+  const searchResource = (e) => setSearchInput(e.target.value);
+
   return (
     <>
       <ToastContainer />
@@ -87,10 +112,13 @@ const Home = () => {
         Curated Collection of all web development resources in one place.
       </h1>
       <div className="home__search__bar">
-        <InstantSearch indexName="bestbuy" searchClient={searchClient}>
-          <SearchBox />
-          <Hits />
-        </InstantSearch>
+        <input
+          type="search"
+          className="ais-SearchBox-input"
+          placeholder="Search resources eg: React"
+          value={searchInput}
+          onChange={searchResource}
+        />
       </div>
       <div className="hero__button__group container">
         <a
@@ -149,7 +177,10 @@ const Home = () => {
             ))}
           </div>
           <div className="usefull__libraries">
-            <Collapsible title="Usefull Libraries">
+            <Collapsible
+              title="Usefull Libraries"
+              length={homePageData.libraries.length}
+            >
               <div className="home__library__card__container">
                 {homePageData.libraries.map((library) => (
                   <NonImageCard
@@ -162,7 +193,7 @@ const Home = () => {
             </Collapsible>
           </div>
           <div className="code__snippet">
-            <Collapsible title="Code Snippets">
+            <Collapsible title="Code Snippets" length={homePageData.codeSnippets.length}>
               <div className="home__codesnippet__card__container">
                 {homePageData.codeSnippets.map((snippet) => (
                   <NonImageCard
@@ -175,7 +206,7 @@ const Home = () => {
             </Collapsible>
           </div>
           <div className="free__courses">
-            <Collapsible title="Free Courses">
+            <Collapsible title="Free Courses" length={homePageData.courses.length}>
               <div className="home__free__courses__card__container">
                 {homePageData.courses.map((course) => (
                   <ImageCard
@@ -188,7 +219,7 @@ const Home = () => {
             </Collapsible>
           </div>
           <div className="amazing__articles">
-            <Collapsible title="Amazing articles">
+            <Collapsible title="Amazing articles" length={homePageData.articles.length}>
               <div className="home__amazing__articles__card__container">
                 {homePageData.articles.map((article) => (
                   <ImageCard

@@ -24,7 +24,7 @@ import {
 const AddResources = () => {
   const [ResourceTypeList, setResourceTypeList] = useState([
     { id: "libraries", value: "Usefull Libraries" },
-    { id: "snippets", value: "Code Snippets" },
+    { id: "codeSnippets", value: "Code Snippets" },
     { id: "courses", value: "Free Courses" },
     { id: "articles", value: "Amazing Articles" },
   ]);
@@ -107,12 +107,12 @@ const AddResources = () => {
         ...newResourceData,
       })
     );
-    setResourceType("");
     setNewResourceData({
       ...newResourceData,
       name: "",
       description: "",
       url: "",
+      thumbnail: "",
     });
 
     return toast.success(newResource.payload, {
@@ -204,7 +204,7 @@ const AddResources = () => {
           />
         </div>
         <div className="resource__form">
-          <label style={{ marginBottom: "1rem" }}>Select Resource Type</label>
+          <label style={{ marginBottom: "1rem" }}>Resource Description</label>
           <DarkTextArea
             label="Description"
             id="resource"

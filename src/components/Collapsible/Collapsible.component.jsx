@@ -3,13 +3,25 @@ import classnames from "classnames";
 
 import "./Collapsible.styles.scss";
 
-const Collapsible = ({ title, children }) => {
+const Collapsible = ({ title, children, length }) => {
   const [toggle, setTogggle] = useState(false);
   return (
     <>
       <div className="collapsible__container">
         <div className="collapsible__menu">
-          <h2 className="pointer" onClick={() => setTogggle(!toggle)}>{title}</h2>
+          <h2 className="pointer" onClick={() => setTogggle(!toggle)}>
+            {title}
+            <span
+              style={{
+                marginLeft: ".5rem",
+                border: "1px solid white",
+                padding: "2px .5rem",
+                fontSize: "20px",
+              }}
+            >
+              {length}
+            </span>
+          </h2>
           {toggle ? (
             <i
               className="fas fa-angle-up fa-2x pointer"
