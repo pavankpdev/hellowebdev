@@ -69,7 +69,7 @@ const Home = () => {
   }, [location.state]);
 
   useEffect(() => {
-    // resources.resources
+    // Search Resources
     setHomePageData({
       libraries: reduxState.resources.resources.libraries.filter(
         ({ name, keywords, category }) =>
@@ -99,27 +99,31 @@ const Home = () => {
   }, [searchInput]);
 
   useEffect(() => {
-    setHomePageData({
-      libraries: reduxState.resources.resources.libraries.filter(
-        ({ category }) => category.includes(selectedCategory)
-      ),
-      codeSnippets: reduxState.resources.resources.codeSnippets.filter(
-        ({ category }) => category.includes(selectedCategory)
-      ),
-      courses: reduxState.resources.resources.courses.filter(({ category }) =>
-        category.includes(selectedCategory)
-      ),
-      articles: reduxState.resources.resources.articles.filter(({ category }) =>
-        category.includes(selectedCategory)
-      ),
-    });
+    if (selectedCategory) {
+      setHomePageData({
+        libraries: reduxState.resources.resources.libraries.filter(
+          ({ category }) => category.includes(selectedCategory)
+        ),
+        codeSnippets: reduxState.resources.resources.codeSnippets.filter(
+          ({ category }) => category.includes(selectedCategory)
+        ),
+        courses: reduxState.resources.resources.courses.filter(({ category }) =>
+          category.includes(selectedCategory)
+        ),
+        articles: reduxState.resources.resources.articles.filter(
+          ({ category }) => category.includes(selectedCategory)
+        ),
+      });
+    } else {
+      setHomePageData(reduxState.resources.resources);
+    }
   }, [selectedCategory]);
 
   // Sort the list based on search string
   const SelectCategory = (id) => {
     if (!selectedCategory.includes(id)) return setSelectedCategory(id);
 
-    return;
+    return setSelectedCategory("");
   };
 
   const searchResource = (e) => setSearchInput(e.target.value);
