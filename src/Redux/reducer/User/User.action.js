@@ -26,8 +26,13 @@ export const authUser = (userData) => async (dispatch) => {
       });
       return dispatch(requestSuccess(AUTH_USER, currentUser[0]));
     } else {
-      await addNewDocumentToFirebase("users", userData);
-      return dispatch(requestSuccess(AUTH_USER, userData));
+      await addNewDocumentToFirebase("users", {
+        ...userData,
+        contribution: [],
+      });
+      return dispatch(
+        requestSuccess(AUTH_USER, { ...userData, contribution: [] })
+      );
     }
   } catch (error) {
     return dispatch(requestfailed(error));

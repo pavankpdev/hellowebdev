@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import "./Profile.styles.scss";
@@ -35,12 +36,18 @@ const Profile = () => {
           Your Contributions
         </h2>
         <div className="profile__contents">
-          {reduxState.user.user.contribution.map((contributions) => (
-            <ProfileContributionCard
-              {...contributions}
-              key={contributions.id}
-            />
-          ))}
+          {reduxState.user.user.contribution.length > 0 ? (
+            reduxState.user.user.contribution.map((contributions) => (
+              <ProfileContributionCard
+                {...contributions}
+                key={contributions.id}
+              />
+            ))
+          ) : (
+            <p>
+              You can start contributing <Link className="danger" to="/new-resource">here</Link>
+            </p>
+          )}
         </div>
       </div>
     </>
