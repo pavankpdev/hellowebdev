@@ -24,6 +24,7 @@ import {
 } from "../../Redux/reducer/Resource/Resource.action";
 
 const Home = () => {
+  const [githubStars, setGithubStars] = useState(2);
   const [homePageData, setHomePageData] = useState({
     libraries: [],
     codeSnippets: [],
@@ -48,6 +49,9 @@ const Home = () => {
       setHomePageData(resources.payload);
     };
     getResourcesAction();
+    fetch("https://api.github.com/repos/pavankpdev/hellowebdev")
+      .then((res) => res.json())
+      .then(({ watchers_count }) => setGithubStars(watchers_count));
   }, []);
 
   useEffect(() => {
@@ -162,9 +166,9 @@ const Home = () => {
           rel="noreferrer"
         >
           <button className="btn">
-            gitHub{" "}
+            gitHub
             <i className="fas fa-star fa-lg" style={{ margin: "0 .5rem" }} />
-            123
+            {githubStars}
           </button>
         </a>
       </div>
