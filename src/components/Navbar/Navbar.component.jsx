@@ -44,9 +44,11 @@ const Navbar = () => {
             </div>
           </div>
           <div className="navbar__contents__sm">
+          <Link to="/">
             <div className="navbar__branding">
               <img src={Logo} alt="logo" />
             </div>
+            </Link>
             <div className="navbar__toggle__menu">
               {toggle ? (
                 <i
