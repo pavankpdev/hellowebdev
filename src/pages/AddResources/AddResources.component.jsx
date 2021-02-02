@@ -75,7 +75,7 @@ const AddResources = () => {
   const handleLanguage = (newValue) =>
     setNewResourceData({
       ...newResourceData,
-      language: newValue.map(({ value }) => value),
+      language: [newValue.value],
     });
 
   const handleInput = (e) =>
@@ -114,7 +114,6 @@ const AddResources = () => {
       url: "",
     });
 
-  
     return toast.success(newResource.payload, {
       position: "top-center",
       autoClose: 2000,
@@ -152,6 +151,7 @@ const AddResources = () => {
             options={languages}
             placeholder="Resource Language"
             creatable
+            singleChoice
             onFocus={clearError}
             error={error.client.includes("language")}
             errorMsg="Please select a valid language."

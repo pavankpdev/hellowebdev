@@ -17,6 +17,7 @@ const DarkSelectField = ({
   ref,
   errorMsg,
   onFocus,
+  singleChoice,
 }) => {
   const [customReactSelectStyle, setCustomReactSelectStyle] = useState(
     darkThemeReactSelect
@@ -38,7 +39,7 @@ const DarkSelectField = ({
           onChange={handleChange}
           options={options}
           placeholder={placeholder}
-          isMulti
+          isMulti={!singleChoice}
           ref={ref}
           onFocus={onFocus}
         />
