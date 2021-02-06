@@ -11,6 +11,8 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  min-width: 0;
+  min-height: 0;
 }
 
 body {
@@ -28,7 +30,6 @@ body {
   background-size: $dot-space $dot-space !important;
   overflow-x: hidden;
 }
-
 
 label {
   display: inline-block;

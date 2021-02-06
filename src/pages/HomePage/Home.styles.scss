@@ -56,7 +56,9 @@
 }
 .category__container {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+
+  width: 100%;
 }
 .usefull__libraries,
 .code__snippet,
@@ -115,7 +117,9 @@
   .home__free__courses__card__container,
   .home__amazing__articles__card__container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
+
+    width: 100%;
   }
 }
 

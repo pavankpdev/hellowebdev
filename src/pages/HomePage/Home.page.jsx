@@ -3,11 +3,16 @@ import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import classnames from "classnames";
 import { toast, ToastContainer } from "react-toastify";
-import intersection from "lodash/intersection";
+import Slider from "react-slick";
 
 // styles
 import "react-toastify/dist/ReactToastify.css";
 import "./Home.styles.scss";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+// Configs
+import { carouselConfig } from "../../configs/carousel.config";
 
 // Components
 import SideBar from "../../components/SideBar/SideBar.component";
@@ -35,12 +40,14 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [filter, setFilter] = useState("all");
+  
   // Redux state
   const reduxState = useSelector(({ resources }) => ({ resources }));
 
   const dispatch = useDispatch();
   const location = useLocation();
 
+  // Get home page data from firestore by calling redux actions
   useEffect(() => {
     const getResourcesAction = async () => {
       const resources = await dispatch(getResources());
@@ -54,6 +61,7 @@ const Home = () => {
       .then(({ watchers_count }) => setGithubStars(watchers_count));
   }, []);
 
+  // Auth required Warning message
   useEffect(() => {
     if (location.state)
       toast.warn(location.state, {
@@ -68,6 +76,7 @@ const Home = () => {
       });
   }, [location.state]);
 
+  // Search function (Temporary - will be replaced by Algolia)
   useEffect(() => {
     // Search Resources
     setHomePageData({
@@ -98,6 +107,7 @@ const Home = () => {
     });
   }, [searchInput]);
 
+  // Sort based on category
   useEffect(() => {
     if (selectedCategory) {
       setHomePageData({
@@ -189,15 +199,17 @@ const Home = () => {
         </div>
         <div className="home__resources__container">
           <div className="category__container">
-            {categories.map((category) => (
-              <CategoryList
-                key={Math.random}
-                selected={selectedCategory}
-                {...category}
-                SelectCategory={SelectCategory}
-                key={category.id}
-              />
-            ))}
+            <Slider {...carouselConfig}>
+              {categories.map((category) => (
+                <CategoryList
+                  key={Math.random}
+                  selected={selectedCategory}
+                  {...category}
+                  SelectCategory={SelectCategory}
+                  key={category.id}
+                />
+              ))}
+            </Slider>
           </div>
           <div
             className={classnames("usefull__libraries", {
