@@ -117,9 +117,7 @@
   .home__free__courses__card__container,
   .home__amazing__articles__card__container {
     display: flex;
-    flex-direction: column;
-
-    width: 100%;
+    flex-wrap: wrap;
   }
 }
 
