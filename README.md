@@ -21,7 +21,7 @@ An open-source, MIT licensed project with a complete curated collection of resou
 
 - `npm start`
 
-- Below is that .env file structure
+- Below is that .env file structure to store firebase credentials
 
 ```
 REACT_APP_API_KEY= <Your credentials>
