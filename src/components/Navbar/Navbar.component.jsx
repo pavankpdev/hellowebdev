@@ -44,11 +44,14 @@ const Navbar = () => {
             </div>
           </div>
           <div className="navbar__contents__sm">
-          <Link to="/">
-            <div className="navbar__branding">
-              <img src={Logo} alt="logo" />
-            </div>
+            <Link to="/">
+              <div className="navbar__branding">
+                <img src={Logo} alt="logo" />
+              </div>
             </Link>
+            <div className="navbar__button__sm">
+              <GitHubAuthBtn />
+            </div>
             <div className="navbar__toggle__menu">
               {toggle ? (
                 <i
@@ -79,9 +82,6 @@ const Navbar = () => {
               Resource Contributers List
             </div>
           </Link>
-          <div className="navbar__button__sm">
-            <GitHubAuthBtn />
-          </div>
         </div>
       </div>
     </>
