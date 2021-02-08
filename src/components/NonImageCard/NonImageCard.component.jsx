@@ -29,7 +29,6 @@ const NonImageCard = ({
             </Link>
           </div>
           <div className="library__card__footer">
-            <h5>Listed By</h5>
             <div className="library__card__footer__contributor__info">
               <img src={contributor.image} alt="contributor avatar" />
               <h5>{contributor.name}</h5>
