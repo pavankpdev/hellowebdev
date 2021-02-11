@@ -40,7 +40,7 @@ const Home = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [searchInput, setSearchInput] = useState("");
   const [filter, setFilter] = useState("all");
-  
+
   // Redux state
   const reduxState = useSelector(({ resources }) => ({ resources }));
 
@@ -112,16 +112,22 @@ const Home = () => {
     if (selectedCategory) {
       setHomePageData({
         libraries: reduxState.resources.resources.libraries.filter(
-          ({ category }) => category.includes(selectedCategory)
+          ({ category }) => {
+            console.log({ category });
+            return category.includes(selectedCategory.toLowerCase());
+          }
         ),
         codeSnippets: reduxState.resources.resources.codeSnippets.filter(
-          ({ category }) => category.includes(selectedCategory)
+          ({ category }) => category.includes(selectedCategory.toLowerCase())
         ),
         courses: reduxState.resources.resources.courses.filter(({ category }) =>
-          category.includes(selectedCategory)
+          category.includes(selectedCategory.toLowerCase())
         ),
         articles: reduxState.resources.resources.articles.filter(
-          ({ category }) => category.includes(selectedCategory)
+          ({ category }) => {
+            console.log({ art: category, selectedCategory });
+            return category.includes(selectedCategory.toLowerCase());
+          }
         ),
       });
     } else {
