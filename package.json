@@ -1,44 +1,27 @@
 {
-  "name": "web-dev-repo",
+  "name": "hellowebdev",
   "version": "0.1.0",
-  "description": "A complete curated collection of resources for web development.",
-  "main": "index.js",
-  "author": "Pavan Kumar",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pavankpdev/web-dev-repo.git"
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "5.11.6",
-    "@testing-library/react": "11.2.2",
-    "@testing-library/user-event": "12.2.2",
-    "react": "17.0.1",
-    "react-dom": "17.0.1",
-    "react-scripts": "4.0.1"
+    "@chakra-ui/icons": "^1.0.12",
+    "@chakra-ui/react": "^1.6.0",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.3.0",
+    "@zeit/next-css": "^1.0.1",
+    "framer-motion": "^4.1.9",
+    "next": "10.1.3",
+    "next-images": "^1.7.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.2.0"
   },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "CI=false react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "devDependencies": {
+    "@types/react": "^17.0.3",
+    "typescript": "^4.2.4"
   }
 }
