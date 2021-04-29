@@ -3,10 +3,15 @@ import {
   Box,
   Center,
   HStack,
-  VStack,
+  Collapse,
   useBoolean,
+  Link,
+  Flex,
+  Stack,
 } from "@chakra-ui/react";
-import { FaHome, FaChevronRight, FaChevronDown } from "react-icons/fa";
+import { FaBookReader, FaChevronRight, FaChevronDown } from "react-icons/fa";
+
+import SubItems from "./subItems";
 
 const SideBarRoutes = () => {
   const [showContents, setShowContents] = useBoolean();
@@ -14,7 +19,7 @@ const SideBarRoutes = () => {
   return (
     <>
       <HStack justify="space-between">
-        <HStack>
+        <HStack spacing="15px">
           <Box
             style={{
               background:
@@ -26,7 +31,7 @@ const SideBarRoutes = () => {
             onClick={setShowContents.toggle}
           >
             <Center>
-              <FaHome />
+              <FaBookReader />
             </Center>
           </Box>
           <Text
@@ -37,7 +42,7 @@ const SideBarRoutes = () => {
               color: "white",
             }}
           >
-            Home
+            Free Learning
           </Text>
         </HStack>
         {showContents ? (
@@ -54,7 +59,13 @@ const SideBarRoutes = () => {
           />
         )}
       </HStack>
-      {showContents && <Box>fsfsf</Box>}
+      <Collapse animateOpacity in={showContents}>
+        <SubItems />
+        <SubItems />
+        <SubItems />
+        <SubItems />
+        <SubItems />
+      </Collapse>
     </>
   );
 };

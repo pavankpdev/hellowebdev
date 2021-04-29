@@ -11,6 +11,10 @@ const fonts = {
 const colors = {
   ...chakraTheme.colors,
   brandBG: "#141432",
+  bodyBg: "#1D1D42",
+  google: "#4285F4",
+  github: "#24292e",
+  gitlab: "#FC6D27",
 };
 
 // Object that contains the default theme from chakra and our custom theme

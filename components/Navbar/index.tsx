@@ -6,6 +6,9 @@ import {
   Stack,
   useDisclosure,
   Image,
+  Collapse,
+  StackDivider,
+  VStack,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon } from "@chakra-ui/icons";
 import { FaSearch } from "react-icons/fa";
@@ -64,7 +67,15 @@ export default function NavBar() {
           >
             Search
           </Button>
-
+          <Button
+            fontWeight={600}
+            display={{ base: "none", md: "inline-flex" }}
+            colorScheme="pink.200"
+            href={"#"}
+            variant="outline"
+          >
+            Sign In / Sign up
+          </Button>
           <Button
             fontWeight={600}
             display={{ base: "none", md: "inline-flex" }}
@@ -75,8 +86,9 @@ export default function NavBar() {
                 "linear-gradient(100deg, rgba(153,18,224,1) 0%, rgba(215,39,191,1) 50%, rgba(251,124,157,1) 96%)",
             }}
           >
-            Sign In / Sign up
+            Add Resource
           </Button>
+
           <Button
             fontWeight={600}
             display={{ md: "none" }}
@@ -88,10 +100,35 @@ export default function NavBar() {
             }}
             size="sm"
           >
-            Sign In / Sign up
+            Add Resource
           </Button>
         </Stack>
       </Flex>
+      <Collapse in={isOpen} animateOpacity>
+        <VStack spacing={4} align="stretch" bg="brandBG" p="5">
+          <Box>
+            <Button
+              leftIcon={<FaSearch />}
+              fontWeight={400}
+              variant="ghost"
+              size="sm"
+            >
+              Search
+            </Button>
+          </Box>
+          <Box>
+            <Button
+              fontWeight={600}
+              colorScheme="pink"
+              href={"#"}
+              variant="outline"
+              size="sm"
+            >
+              Sign In / Sign up
+            </Button>
+          </Box>
+        </VStack>
+      </Collapse>
     </Box>
   );
 }

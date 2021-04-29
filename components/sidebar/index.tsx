@@ -16,12 +16,17 @@ const SideBar = () => {
     <>
       <VStack
         spacing="24px"
-        display={{ base: "none", md: "block" }}
+        display={{ base: "none", lg: "block" }}
         bg="brandBG"
         mr="1"
         borderRadius="10"
-        p="5"
+        p="8"
       >
+        <SideBarRoutes />
+        <SideBarRoutes />
+        <SideBarRoutes />
+        <SideBarRoutes />
+        <SideBarRoutes />
         <SideBarRoutes />
       </VStack>
     </>
